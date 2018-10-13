@@ -13,15 +13,15 @@ def test_route_index():
     assert response.status_code == 200
 
 
-def test_header():
-    client = app.test_client()
-    response = client.get('/index/')
-    rv = response.get_data(as_text=True)
-    assert '<head>' in rv
-
-
 def test_title():
     client = app.test_client()
     response = client.get('/')
     rv = response.get_data(as_text=True)
     assert 'FactMaps - infobot' in rv
+
+
+def test_header():
+    client = app.test_client()
+    response = client.get('/index/')
+    rv = response.get_data(as_text=True)
+    assert '<header>' in rv
