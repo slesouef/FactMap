@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'calligraffitiregular';
+    src: url('../fonts/Calligraffiti-webfont.eot');
+    src: url('../fonts/Calligraffiti-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Calligraffiti-webfont.woff2') format('woff2'),
+         url('../fonts/Calligraffiti-webfont.woff') format('woff'),
+         url('../fonts/Calligraffiti-webfont.ttf') format('truetype'),
+         url('../fonts/Calligraffiti-webfont.svg#calligraffitiregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body{
+  font-size: 100%;
+  background-color: #61FABA;
+}
+
+header{
+  background-color: rgba(250, 97, 161, 0.7);
+}
+
+header h1{
+  font-family: 'calligraffitiregular';
+  padding: 1.5em;
+  text-align: center;
+}
+
+#logo{
+  float: left;
+  padding-left: 1.5em;
+}
+
+section{
+  min-width: 10em;
+  min-height: 10em;
+}
+
+footer{
+  background-color: black;
+  text-align: center;
+  min-height: 4em;
+}
+
+footer p{
+  color: white;
+  padding-top: 2em;
+}
