@@ -1,3 +1,5 @@
-$(.item).on( "click", function() {
-  alert( $( this ).text() );
+$(document).ready(function(){
+    $("li").click(function(){
+        $(this).hide();
+    });
 });
