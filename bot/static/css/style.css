@@ -2,7 +2,6 @@
     font-family: 'calligraffitiregular';
     src: url('../fonts/Calligraffiti-webfont.eot');
     src: url('../fonts/Calligraffiti-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Calligraffiti-webfont.woff2') format('woff2'),
          url('../fonts/Calligraffiti-webfont.woff') format('woff'),
          url('../fonts/Calligraffiti-webfont.ttf') format('truetype'),
          url('../fonts/Calligraffiti-webfont.svg#calligraffitiregular') format('svg');
