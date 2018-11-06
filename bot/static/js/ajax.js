@@ -4,13 +4,14 @@ document.getElementById("button").addEventListener("click", function(){
   req.open("GET", "http://localhost:5000/time");
   req.addEventListener("load", function(){
     if(req.status >= 200 && req.status < 400){
-      console.log(req.responseText);
+      document.getElementById("date").innerHTML = "<p>" + "<b>" +
+         req.responseText + "</b>" + "</p>";
     } else {
       console.error(req.status + " " + req.statusText + " " + url);
     };
   });
   req.addEventListener("error", function(){
-    console.error("Erreur reseau avec l'url " + url);
+    console.error("Network error on " + url);
   });
   req.send(null);
 })
