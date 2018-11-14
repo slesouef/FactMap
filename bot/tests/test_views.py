@@ -1,5 +1,4 @@
 from bot.views import app
-from datetime import datetime
 
 
 class TestView:
