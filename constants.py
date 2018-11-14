@@ -3,4 +3,4 @@
 """contains all application parameters"""
 
 # Stop word file
-DATA = "data/stop-fr.json"
+DATA = "bot/data/stop-fr.json"
