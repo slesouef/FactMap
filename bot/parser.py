@@ -15,13 +15,5 @@ class Parser:
         no_apostrophe = no_caps.replace("'", " ")
         no_punctuation = no_apostrophe.translate(str.maketrans({a: " " for a in
                                                  punctuation}))
-        word_list = no_punctuation.split(' ')
-        parsed_list = []
-        for word in word_list:
-            if word not in self.stop_words:
-                parsed_list.append(word)
-        cleaned_list = []
-        for i in parsed_list:
-            if i not in punctuation:
-                cleaned_list.append(i)
-        return cleaned_list
+        clean_string = no_punctuation.strip()
+        return clean_string

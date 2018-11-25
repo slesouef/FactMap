@@ -10,6 +10,6 @@ class TestParser:
         self.parser = script.Parser(DATA)
 
     def test_string_cleanup(self):
-        word_list = self.parser.string_cleanup(self.text)
-        assert word_list == ["salut", "grandpy", "connais", "adresse",
-                             "openclassrooms", "paris"]
+        cleaned_string = self.parser.string_cleanup(self.text)
+        assert cleaned_string == "salut grandpy  est ce que tu connais l " \
+                                 "adresse d openclassrooms paris"
