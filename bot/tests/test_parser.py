@@ -4,10 +4,10 @@ from constants import DATA
 
 class TestParser:
 
-    def setup_method(self):
-        self.text = "Salut GrandPy! Est-ce que tu connais l'adresse " \
+    def setup_class(cls):
+        cls.text = "Salut GrandPy! Est-ce que tu connais l'adresse " \
                     "d'OpenClassrooms Paris?"
-        self.parser = script.Parser(DATA)
+        cls.parser = script.Parser(DATA)
 
     def test_list_creation(self):
         self.parser.list_creation(self.text)
@@ -16,5 +16,5 @@ class TestParser:
                                   "openclassrooms", "paris"]
 
     def test_parse_list(self):
-        parsed_results = self.parser.parse_list()
-        assert parsed_results == ["openclassroom", "paris"]
+        results = self.parser.parse_list()
+        assert results == ["openclassrooms", "paris"]

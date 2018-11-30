@@ -18,3 +18,7 @@ class Parser:
                                                  punctuation}))
         clean_string = no_punctuation.strip()
         self.word_list = clean_string.split()
+
+    def parse_list(self):
+        results = [w for w in self.word_list if w not in self.stop_words]
+        return results
