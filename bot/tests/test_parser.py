@@ -14,3 +14,7 @@ class TestParser:
         assert self.parser.word_list == ["salut", "grandpy", "est", "ce", "que",
                                   "tu", "connais", "l", "adresse", "d",
                                   "openclassrooms", "paris"]
+
+    def test_parse_list(self):
+        parsed_results = self.parser.parse_list()
+        assert parsed_results == ["openclassroom", "paris"]
