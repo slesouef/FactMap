@@ -9,7 +9,8 @@ class TestParser:
                     "d'OpenClassrooms Paris?"
         self.parser = script.Parser(DATA)
 
-    def test_string_cleanup(self):
-        cleaned_string = self.parser.string_cleanup(self.text)
-        assert cleaned_string == "salut grandpy  est ce que tu connais l " \
-                                 "adresse d openclassrooms paris"
+    def test_list_creation(self):
+        self.parser.list_creation(self.text)
+        assert self.parser.word_list == ["salut", "grandpy", "est", "ce", "que",
+                                  "tu", "connais", "l", "adresse", "d",
+                                  "openclassrooms", "paris"]
