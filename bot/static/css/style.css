@@ -104,8 +104,24 @@ header > h1{
 }
 
 .messages{
-    background-color: antiquewhite;
+    flex: 1 1 auto;
+    color: rgba(255,255,255,0.75);
+    width: 100%;
+    overflow: auto;
+}
+
+.message{
+    clear: both;
+    float: left;
+    background: rgba(0, 0, 0, .3);
     border-radius: 10px;
+    padding: .5em;
+    margin: .4em 1em;
+}
+
+.message-perso{
+    float: right;
+    background: linear-gradient(120deg, #1d6e1d, #0a3f6e);
 }
 
 .message-box{
