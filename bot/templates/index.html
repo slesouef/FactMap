@@ -6,20 +6,30 @@
         <title>FactMaps - infobot</title>
     </head>
     <body>
-        <header id="header">
-            <img src="../static/img/Map-icon.svg" id="logo" alt="logo"
+        <header>
+            <img src="../static/img/Map-icon.svg" class="logo" alt="logo"
                  title="Logo" />
             <h1>Bienvenue chez GrandPy - Le bot qui vous raconte sa vie</h1>
         </header>
-        <section id="chat">
-            <div id="messages">
+        <section class="chat">
+            <div class="chat-title">
+                <h1>GrandPy</h1>
+                <h2>Directionalist</h2>
+                <figure class="avatar">
+                    <img src="../static/img/26943211820_e98f297402_q.jpg"
+                         alt="Cool Papy"/>
+                </figure>
             </div>
-            <hr />
-            <div id="entry form">
-                <div id="entry">
+            <div class="messages" id="messages">
+                <div class="message-content">
+                </div>
+            </div>
+            <div class="message-box">
+                <div class="entry">
                     <input placeholder="Pose une question a GrandPy"
-                           id="question"/>
-                    <input type="button" value="send text" id="confirm"/>
+                           class="message-input" id="input"/>
+                    <input type="button" value="envoyer"
+                           class="message-submit" id="submit"/>
                 </div>
                 <hr />
                 <div id="button">
@@ -27,7 +37,7 @@
                 </div>
             </div>
         </section>
-        <footer id="footer">
+        <footer>
             <p>Copyright Sebastien Lesouef</p>
         </footer>
 
