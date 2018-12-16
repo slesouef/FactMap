@@ -8,5 +8,6 @@ document.getElementById("submit").addEventListener("click", function(){
         new_entry.textContent = entry;
         new_entry.className = "message message-perso";
         document.getElementById("messages").appendChild(new_entry);
+        getdata();
     }
 });
