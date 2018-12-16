@@ -11,6 +11,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/time')
+@app.route('/data')
 def time():
-    return jsonify(datetime.now())
+    return "test ok"
