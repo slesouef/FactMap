@@ -12,7 +12,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/data', methods = ['POST'])
+@app.route('/data', methods=['POST'])
 def parse():
     myparser = Parser(DATA)
     entry = request.data.decode()

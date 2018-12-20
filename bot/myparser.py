@@ -15,7 +15,7 @@ class Parser:
         no_caps = request.lower()
         no_apostrophe = no_caps.replace("'", " ")
         no_punctuation = no_apostrophe.translate(str.maketrans({a: " " for a in
-                                                 punctuation}))
+                                                                punctuation}))
         clean_string = no_punctuation.strip()
         self.word_list = clean_string.split()
 

@@ -6,7 +6,7 @@ class TestParser:
 
     def setup_class(cls):
         cls.text = "Salut GrandPy! Est-ce que tu connais l'adresse " \
-                    "d'OpenClassrooms Paris?"
+                   "d'OpenClassrooms Paris?"
         cls.parser = script.Parser(DATA)
 
     def test_list_creation(self):
