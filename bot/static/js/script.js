@@ -4,10 +4,14 @@ document.getElementById("submit").addEventListener("click", function () {
         return false;
     } else {
         document.getElementById("input").value = "";
-        var newEntry = document.createElement("div");
-        newEntry.textContent = entry;
-        newEntry.className = "message message-personal";
-        document.getElementById("messages").appendChild(newEntry);
+        newPersonalMessage(entry);
         getData(entry);
     }
 });
+
+function newPersonalMessage(text) {
+    var newEntry = document.createElement("div");
+    newEntry.textContent = text;
+    newEntry.className = "message message-personal";
+    document.getElementById("messages").appendChild(newEntry);
+}
