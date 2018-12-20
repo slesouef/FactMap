@@ -1,4 +1,4 @@
-import bot.parser as script
+import bot.myparser as script
 from constants import DATA
 
 
@@ -12,8 +12,8 @@ class TestParser:
     def test_list_creation(self):
         self.parser.list_creation(self.text)
         assert self.parser.word_list == ["salut", "grandpy", "est", "ce", "que",
-                                  "tu", "connais", "l", "adresse", "d",
-                                  "openclassrooms", "paris"]
+                                         "tu", "connais", "l", "adresse", "d",
+                                         "openclassrooms", "paris"]
 
     def test_parse_list(self):
         results = self.parser.parse_list()
