@@ -16,5 +16,5 @@ class TestView:
         assert response.status_code == 200
 
     def test_route_time(self):
-        response = self.client.get('/time')
+        response = self.client.get('/data')
         assert response.status_code == 200
