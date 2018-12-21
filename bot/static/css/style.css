@@ -94,11 +94,11 @@ header > h1 {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.53);
+    border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .avatar > img {
-    width: 117%;
+    width: 116%;
     height: auto;
 }
 
@@ -107,6 +107,10 @@ header > h1 {
     color: rgba(255, 255, 255, 0.75);
     width: 100%;
     overflow: auto;
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
 }
 
 .message {
