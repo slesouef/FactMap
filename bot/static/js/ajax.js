@@ -7,6 +7,7 @@ function getData(entry) {
             newResponse.textContent = req.responseText;
             newResponse.className = "message";
             document.getElementById("messages").appendChild(newResponse);
+            newResponse.scrollIntoView(false);
         } else {
             console.error(req.status + " " + req.statusText + " " + url);
         }
