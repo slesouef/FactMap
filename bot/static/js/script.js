@@ -15,6 +15,7 @@ function newPersonalMessage(text) {
     newEntry.textContent = text;
     newEntry.className = "message message-personal";
     document.getElementById("messages").appendChild(newEntry);
+    newEntry.scrollIntoView(false);
 }
 
 function newBotMessage(text) {
@@ -31,4 +32,5 @@ function tempLoader() {
     tempDiv.id = "spinner";
     tempDiv.innerHTML = "<div class=spinner></div>";
     document.getElementById("messages").appendChild(tempDiv);
+    tempDiv.scrollIntoView(false);
 }
