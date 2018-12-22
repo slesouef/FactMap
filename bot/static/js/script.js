@@ -5,8 +5,8 @@ document.getElementById("submit").addEventListener("click", function () {
     } else {
         document.getElementById("input").value = "";
         newPersonalMessage(entry);
-        spinner();
-        getData(entry);
+        tempLoader();
+        getData(entry, newBotMessage);
     }
 });
 
@@ -17,7 +17,15 @@ function newPersonalMessage(text) {
     document.getElementById("messages").appendChild(newEntry);
 }
 
-function spinner() {
+function newBotMessage(text) {
+    var newResponse = document.createElement("div");
+    newResponse.textContent = text;
+    newResponse.className = "message";
+    document.getElementById("messages").appendChild(newResponse);
+    newResponse.scrollIntoView(false);
+}
+
+function tempLoader() {
     var tempDiv = document.createElement("div");
     tempDiv.className = "message";
     tempDiv.id = "spinner";
