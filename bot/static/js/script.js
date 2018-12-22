@@ -29,8 +29,6 @@ function tempLoader() {
     var tempDiv = document.createElement("div");
     tempDiv.className = "message";
     tempDiv.id = "spinner";
+    tempDiv.innerHTML = "<div class=spinner></div>";
     document.getElementById("messages").appendChild(tempDiv);
-    var loader = document.createElement("div");
-    loader.className = "spinner";
-    document.getElementById("spinner").appendChild(loader);
 }
