@@ -10,6 +10,20 @@ document.getElementById("submit").addEventListener("click", function () {
     }
 });
 
+document.getElementById("input").addEventListener("keydown", function (e) {
+    if (e.key === 'Enter') {
+        var entry = document.getElementById("input").value;
+        if (entry === '') {
+            return false;
+        } else {
+            document.getElementById("input").value = "";
+            newPersonalMessage(entry);
+            tempLoader();
+            getData(entry, newBotMessage);
+        }
+    }
+});
+
 function newPersonalMessage(text) {
     var newEntry = document.createElement("div");
     newEntry.textContent = text;
