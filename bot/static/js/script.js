@@ -36,6 +36,7 @@ function newBotMessage(text) {
     var newResponse = document.createElement("div");
     newResponse.textContent = text;
     newResponse.className = "message";
+    document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newResponse);
     newResponse.scrollIntoView(false);
 }
