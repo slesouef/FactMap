@@ -43,4 +43,10 @@ class TestMaps:
         assert self.map.get_geocode("") == geocode_response
 
 # TODO: test error cases (empty response, server error, ...)
-# TODO: test ajax response
+
+    def test_extract_map_info(self):
+        self.map.extract_map_info(geocode_response)
+        assert self.map.map_data["address"] == "7 Cité Paradis, 75010 Paris, " \
+                                               "France"
+        assert self.map.map_data["coordinates"] == (48.8747578,
+                                                    2.350564700000001)
