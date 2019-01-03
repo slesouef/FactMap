@@ -1,6 +1,7 @@
 #! usr/bin/env python3
 # -*- coding:utf-8 -*-
-import requests
+import urllib.request
+import json
 
 from constants import URL, APIKEY
 
@@ -12,7 +13,8 @@ class Map:
         call = "{}address={}&key={}".format(URL, parameters, APIKEY)
         return call
 
-    def get_geocode(self):
-        url = 'test'
-        r = requests.get(url)
-        return r
+    def get_geocode(self, url):
+        response = urllib.request.urlopen(url)
+        data = json.loads(response.read().decode("utf8"))
+        return data
+    # TODO: error handling
