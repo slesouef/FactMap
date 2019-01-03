@@ -42,8 +42,8 @@ interactions.
 
 ### Resources:
 
- - [Google Maps API]()
- - [Media Wiki API]()
+ - [Google Maps API](https://developers.google.com/maps/documentation/)
+ - [Media Wiki API](https://www.mediawiki.org/wiki/API:Main_page)
  
 
 ### Deliveries:
