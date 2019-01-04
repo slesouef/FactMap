@@ -1,9 +1,10 @@
 #! usr/bin/env python3
 # -*- coding:utf-8 -*-
 import urllib.request
+import os
 import json
 
-from constants import URL, APIKEY
+from constants import URL
 
 
 class Map:
@@ -13,7 +14,8 @@ class Map:
 
     def create_url(self, parsed_location):
         parameters = "+".join(parsed_location)
-        call = "{}address={}&key={}".format(URL, parameters, APIKEY)
+        apikey = os.getenv('GMAPS_KEY')
+        call = "{}address={}&key={}".format(URL, parameters, apikey)
         return call
 
     def get_geocode(self, url):
