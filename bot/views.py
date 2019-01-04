@@ -7,13 +7,13 @@ from constants import DATA
 app = Flask(__name__)
 
 
-@app.route('/')
-@app.route('/index/')
+@app.route("/")
+@app.route("/index/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/data', methods=['POST'])
+@app.route("/data", methods=["POST"])
 def parse():
     myparser = Parser(DATA)
     mymap = Map()
