@@ -14,7 +14,7 @@ class Map:
 
     def create_url(self, parsed_location):
         parameters = "+".join(parsed_location)
-        apikey = os.getenv('GMAPS_KEY')
+        apikey = os.getenv("GMAPS_KEY")
         call = "{}address={}&key={}".format(URL, parameters, apikey)
         return call
 
