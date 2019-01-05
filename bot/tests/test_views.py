@@ -18,5 +18,3 @@ class TestView:
     def test_route_time(self):
         response = self.client.post('/data')
         assert response.status_code == 200
-
- # TODO: add test for gmaps call route
