@@ -27,8 +27,6 @@ class Map:
             error = "INVALID REQUEST. ERROR CODE: {}".format(e.code)
             return error
 
-    # TODO: error handling
-
     def extract_map_info(self, data):
         p = data
         if p["status"] == "OK":
@@ -37,4 +35,4 @@ class Map:
             longitude = p["results"][0]["geometry"]["location"]["lng"]
             self.map_data["coordinates"] = (latitude, longitude)
         else:
-            raise Exception("KO status")
+            return "INVALID REQUEST CONTENT"
