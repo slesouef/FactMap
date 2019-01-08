@@ -29,10 +29,13 @@ class Map:
 
     def extract_map_info(self, data):
         p = data
-        if p["status"] == "OK":
-            self.map_data["address"] = p["results"][0]["formatted_address"]
-            latitude = p["results"][0]["geometry"]["location"]["lat"]
-            longitude = p["results"][0]["geometry"]["location"]["lng"]
-            self.map_data["coordinates"] = (latitude, longitude)
+        if type(p) is dict:
+            if p["status"] == "OK":
+                self.map_data["address"] = p["results"][0]["formatted_address"]
+                latitude = p["results"][0]["geometry"]["location"]["lat"]
+                longitude = p["results"][0]["geometry"]["location"]["lng"]
+                self.map_data["coordinates"] = (latitude, longitude)
+            else:
+                return "INVALID REQUEST CONTENT"
         else:
-            return "INVALID REQUEST CONTENT"
+            return p
