@@ -49,10 +49,8 @@ class TestMaps:
         monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
         assert self.map.get_geocode("") == geocode_response
 
-# TODO: test error cases (empty response, server error, ...)
-
     # server error ==> http 400+
-    def test_get_geocode_error(self, monkeypatch):
+    def test_get_geocode_error(self):
         response = self.map.get_geocode(URL)
         assert response == "INVALID REQUEST. ERROR CODE: 400"
 
@@ -63,7 +61,7 @@ class TestMaps:
         assert self.map.map_data["coordinates"] == (48.8747578,
                                                     2.350564700000001)
 
-    # empty response ==> http 200 status ZERO RESPONSE (test in extract)
+    # empty response ==> http 200 status ZERO RESPONSE
     def test_extract_map_info_empty(self):
         content = self.map.extract_map_info(empty_response)
         assert content == "INVALID REQUEST CONTENT"
