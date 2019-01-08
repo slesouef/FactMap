@@ -50,7 +50,7 @@ class TestMaps:
         assert self.map.get_geocode("") == geocode_response
 
 # TODO: test error cases (empty response, server error, ...)
-    # empty response ==> http 200 status ZERO RESPONSE (test in extract)
+
     # server error ==> http 400+
     def test_get_geocode_error(self, monkeypatch):
         response = self.map.get_geocode(URL)
@@ -62,3 +62,8 @@ class TestMaps:
                                                "France"
         assert self.map.map_data["coordinates"] == (48.8747578,
                                                     2.350564700000001)
+
+    # empty response ==> http 200 status ZERO RESPONSE (test in extract)
+    def test_extract_map_info_empty(self):
+        content = self.map.extract_map_info(empty_response)
+        assert content == "INVALID REQUEST CONTENT"
