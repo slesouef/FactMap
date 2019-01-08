@@ -5,6 +5,8 @@ import json
 
 from io import BytesIO
 
+from constants import URL
+
 geocode_response = {
            "results" : [
               {
@@ -19,6 +21,11 @@ geocode_response = {
            ],
            "status" : "OK"
         }
+
+empty_response = {
+   "results" : [],
+   "status" : "ZERO_RESULTS"
+}
 
 
 class TestMaps:
@@ -43,6 +50,11 @@ class TestMaps:
         assert self.map.get_geocode("") == geocode_response
 
 # TODO: test error cases (empty response, server error, ...)
+    # empty response ==> http 200 status ZERO RESPONSE (test in extract)
+    # server error ==> http 400+
+    def test_get_geocode_error(self, monkeypatch):
+        response = self.map.get_geocode(URL)
+        assert response == "INVALID REQUEST. ERROR CODE: 400"
 
     def test_extract_map_info(self):
         self.map.extract_map_info(geocode_response)
