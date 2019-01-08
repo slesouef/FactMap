@@ -19,9 +19,14 @@ class Map:
         return call
 
     def get_geocode(self, url):
-        response = urllib.request.urlopen(url)
-        data = json.loads(response.read().decode("utf8"))
-        return data
+        try:
+            response = urllib.request.urlopen(url)
+            data = json.loads(response.read().decode("utf8"))
+            return data
+        except urllib.error.HTTPError as e:
+            error = "INVALID REQUEST. ERROR CODE: {}".format(e.code)
+            return error
+
     # TODO: error handling
 
     def extract_map_info(self, data):
