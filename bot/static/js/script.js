@@ -19,7 +19,7 @@ document.getElementById("input").addEventListener("keydown", function (e) {
             document.getElementById("input").value = "";
             newPersonalMessage(entry);
             tempLoader();
-            getData(entry, newBotMessage);
+            getData(entry, createNewMap);
         }
     }
 });
@@ -30,6 +30,24 @@ function newPersonalMessage(text) {
     newEntry.className = "message message-personal";
     document.getElementById("messages").appendChild(newEntry);
     newEntry.scrollIntoView(false);
+}
+
+function createNewMap(text) {
+    response = JSON.parse(text);
+    var newMap = document.createElement("div");
+    newMap.id = "map";
+    newMap.className = "message";
+    document.getElementById("spinner").outerHTML = "";
+    document.getElementById("messages").appendChild(newMap);
+    initMap(response.coordinates[0], response.coordinates[1]);
+    newMap.scrollIntoView(false);
+}
+
+function initMap(latitude, longitude) {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: {lat: latitude, lng: longitude},
+        zoom: 13
+    });
 }
 
 function newBotMessage(text) {
