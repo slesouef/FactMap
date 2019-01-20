@@ -128,8 +128,8 @@ header > h1 {
 }
 
 #map{
-    height: 100%;
-    width: 30em;
+    height: 200px;
+    width: 324px;
 }
 
 .spinner {
