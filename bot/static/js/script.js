@@ -35,8 +35,9 @@ function newPersonalMessage(text) {
 function createNewMap(text) {
     response = JSON.parse(text);
     var newMap = document.createElement("div");
-    newMap.id = "map";
     newMap.className = "message";
+    newMap.innerHTML = "<div>" + response.address + "</div>" + "<div" +
+        " id='map'></div>"
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMap);
     initMap(response.coordinates[0], response.coordinates[1]);
