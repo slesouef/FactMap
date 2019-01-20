@@ -7,4 +7,3 @@ DATA = "bot/data/stop-fr.json"
 
 # google maps geocoding parameters
 URL = "https://maps.googleapis.com/maps/api/geocode/json?"
-
