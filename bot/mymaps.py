@@ -1,41 +1,60 @@
 #! usr/bin/env python3
 # -*- coding:utf-8 -*-
-import urllib.request
+"""Google Maps module
+
+Responsible for the call to Google Maps geocode API and the treatment of the
+response
+"""
 import os
 import json
+from urllib import request, error as e
 
 from constants import URL
 
 
 class Map:
+    """Call Google Maps API and extract pertinent information from response"""
 
     def __init__(self):
         self.map_data = {}
+        self.url = ""
 
     def create_url(self, parsed_location):
-        parameters = "+".join(parsed_location)
-        apikey = os.getenv("GMAPS_KEY")
-        call = "{}address={}&key={}".format(URL, parameters, apikey)
-        return call
+        """Format call URL from parser result
 
-    def get_geocode(self, url):
+        Args:
+            parsed_location: result of Parser module
+        """
+        parameters = "+".join(parsed_location)
+        # retrieve API key from environment variable
+        apikey = os.getenv("GMAPS_KEY")
+        self.url = "{}address={}&key={}".format(URL, parameters, apikey)
+
+    def get_geocode(self):
+        """Call Google Maps API and decode response or handle error"""
         try:
-            response = urllib.request.urlopen(url)
+            response = request.urlopen(self.url)
             data = json.loads(response.read().decode("utf8"))
             return data
-        except urllib.error.HTTPError as e:
-            error = "INVALID REQUEST. ERROR CODE: {}".format(e.code)
+        except e.HTTPError as err:
+            error = "INVALID REQUEST. ERROR CODE: {}".format(err.code)
             return error
 
     def extract_map_info(self, data):
-        p = data
-        if type(p) is dict:
-            if p["status"] == "OK":
-                self.map_data["address"] = p["results"][0]["formatted_address"]
-                latitude = p["results"][0]["geometry"]["location"]["lat"]
-                longitude = p["results"][0]["geometry"]["location"]["lng"]
+        """Extract useful information from API response
+
+        Args:
+            data: content of API response
+        """
+        # TODO: REFACTOR so that both else are used by application code
+        response = data
+        if isinstance(response, dict):
+            if response["status"] == "OK":
+                self.map_data["address"] = response["results"][0]["formatted_address"]
+                latitude = response["results"][0]["geometry"]["location"]["lat"]
+                longitude = response["results"][0]["geometry"]["location"]["lng"]
                 self.map_data["coordinates"] = (latitude, longitude)
             else:
                 return "INVALID REQUEST CONTENT"
         else:
-            return p
+            return response
