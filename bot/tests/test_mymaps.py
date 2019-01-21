@@ -34,12 +34,11 @@ class TestMaps:
     def setup_class(cls):
         cls.parameters = ["openclassrooms", "paris"]
         cls.map = script.Map()
-        cls.url = ""
 
     def test_create_url(self):
-        self.url = self.map.create_url(self.parameters)
+        self.map.create_url(self.parameters)
         for p in self.parameters:
-            assert p in self.url
+            assert p in self.map.url
 
     def test_get_geocode(self, monkeypatch):
 
@@ -47,11 +46,12 @@ class TestMaps:
             return BytesIO(json.dumps(geocode_response).encode())
 
         monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
-        assert self.map.get_geocode("") == geocode_response
+        assert self.map.get_geocode() == geocode_response
 
     # server error ==> http 400+
     def test_get_geocode_error(self):
-        response = self.map.get_geocode(URL)
+        self.map.url = URL
+        response = self.map.get_geocode()
         assert response == "INVALID REQUEST. ERROR CODE: 400"
 
     def test_extract_map_info(self):
