@@ -72,5 +72,5 @@ class TestMaps:
     # empty response ==> http 200 status ZERO RESPONSE
     def test_extract_map_info_empty(self):
         """Test of empty result response from API"""
-        content = self.map.extract_map_info(EMPTY_RESPONSE)
-        assert content == "INVALID REQUEST CONTENT"
+        self.map.extract_map_info(EMPTY_RESPONSE)
+        assert self.map.map_data["status"] == "INVALID REQUEST CONTENT"
