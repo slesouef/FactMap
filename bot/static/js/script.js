@@ -6,7 +6,7 @@ document.getElementById("submit").addEventListener("click", function () {
         document.getElementById("input").value = "";
         newPersonalMessage(entry);
         tempLoader();
-        getData(entry, newBotMessage);
+        getData(entry, createNewMap);
     }
 });
 
