@@ -46,15 +46,15 @@ class Map:
         Args:
             data: content of API response
         """
-        # TODO: REFACTOR so that both else are used by application code
         response = data
         if isinstance(response, dict):
             if response["status"] == "OK":
+                self.map_data["status"] = response["status"]
                 self.map_data["address"] = response["results"][0]["formatted_address"]
                 latitude = response["results"][0]["geometry"]["location"]["lat"]
                 longitude = response["results"][0]["geometry"]["location"]["lng"]
                 self.map_data["coordinates"] = (latitude, longitude)
             else:
-                return "INVALID REQUEST CONTENT"
+                self.map_data["status"] = "INVALID REQUEST CONTENT"
         else:
-            return response
+            self.map_data["status"] = response
