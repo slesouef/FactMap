@@ -54,3 +54,7 @@ interactions.
  - [Agile board location](https://trello.com/b/f5wgDaC1/factmap)
  - Project description document
  
+ ## Version:
+ 
+ 0.1 : First alpha release. The bot replies with an address and a map in 
+ response to the user entry (01/22/2019)
