@@ -1,3 +1,4 @@
+#! usr/bin/env python3
 """main flask module
 
 responsible to launch Flask server
@@ -10,17 +11,17 @@ from bot.mymaps import Map
 from constants import DATA
 
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
 
-@app.route("/")
-@app.route("/index/")
+@APP.route("/")
+@APP.route("/index/")
 def index():
     """renders the webapp landing page"""
     return render_template("index.html")
 
 
-@app.route("/data", methods=["POST"])
+@APP.route("/data", methods=["POST"])
 def parse():
     """takes the data from POST and creates the response from backend
     treatment"""

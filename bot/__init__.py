@@ -2,4 +2,4 @@
 
 loads flask app from views module
 """
-from .views import app
+from .views import APP

@@ -1,5 +1,5 @@
 """Flask test module"""
-from bot.views import app
+from bot.views import APP
 
 
 class TestView:
@@ -8,7 +8,7 @@ class TestView:
     @classmethod
     def setup_class(cls):
         """Setup Flask test client"""
-        cls.client = app.test_client()
+        cls.client = APP.test_client()
 
     def test_route_default(self):
         """Test default route"""
