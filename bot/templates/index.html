@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/css/style.css"/>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}"/>
     <title>FactMaps - information bot</title>
 </head>
 <body>
 <header>
-    <img src="../static/img/Map-icon.svg" class="logo" alt="logo"
-         title="Logo"/>
+    <img src="{{ url_for('static', filename='img/Map-icon.svg') }}" class="logo"
+    alt="logo" title="Logo"/>
     <h1>Bienvenue chez GrandPy - Le bot qui vous raconte sa vie</h1>
 </header>
 <section class="chat">
@@ -16,7 +17,7 @@
         <h1>GrandPy</h1>
         <h2>Directionalist</h2>
         <figure class="avatar">
-            <img src="../static/img/26943211820_e98f297402_q.jpg"
+            <img src="{{ url_for('static', filename='img/26943211820_e98f297402_q.jpg') }}"
                  alt="Cool Papy"/>
         </figure>
     </div>
@@ -37,10 +38,10 @@
     <p>Copyright Sebastien Lesouef</p>
 </footer>
 
-<script src="../static/js/ajax.js"></script>
-<script src="../static/js/jquery/jquery-3.3.1.min.js"></script>
-<script src="../static/js/script.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key="
+<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API']}}"
         async defer></script>
 </body>
 </html>
