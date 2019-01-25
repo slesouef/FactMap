@@ -13,6 +13,9 @@ from constants import DATA
 
 APP = Flask(__name__)
 
+# Config options
+APP.config.from_object("config")
+
 
 @APP.route("/")
 @APP.route("/index/")
