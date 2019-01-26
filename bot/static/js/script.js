@@ -33,11 +33,11 @@ function newPersonalMessage(text) {
 }
 
 function createNewMap(text) {
-    response = JSON.parse(text);
+    var response = JSON.parse(text);
     var newMap = document.createElement("div");
     newMap.className = "message";
     newMap.innerHTML = "<div>" + response.address + "</div>" + "<div" +
-        " id='map'></div>"
+        " id='map'></div>";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMap);
     initMap(response.coordinates[0], response.coordinates[1]);
@@ -45,19 +45,15 @@ function createNewMap(text) {
 }
 
 function initMap(latitude, longitude) {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: {lat: latitude, lng: longitude},
+    var location = {lat: latitude, lng: longitude};
+    var map = new google.maps.Map(document.getElementById("map"), {
+        center: location,
         zoom: 13
     });
-}
-
-function newBotMessage(text) {
-    var newResponse = document.createElement("div");
-    newResponse.textContent = text;
-    newResponse.className = "message";
-    document.getElementById("spinner").outerHTML = "";
-    document.getElementById("messages").appendChild(newResponse);
-    newResponse.scrollIntoView(false);
+    var marker = new google.maps.Marker({
+        position: location,
+        map : map
+    });
 }
 
 function tempLoader() {
