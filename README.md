@@ -58,3 +58,6 @@ interactions.
  
  0.1 : First alpha release. The bot replies with an address and a map in 
  response to the user entry (01/22/2019)
+ 
+ 0.2 : Second alpha release. Address displayed in fr and marker of location 
+ is displayed on map (01/26/2019)
