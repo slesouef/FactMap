@@ -11,4 +11,4 @@ from bot import APP
 load_dotenv()
 
 if __name__ == "__main__":
-    APP.run()
+    APP.run(debug=True)
