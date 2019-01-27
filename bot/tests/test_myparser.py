@@ -32,5 +32,3 @@ class TestParser:
         """
         results = self.parser.parse_list()
         assert results == ["openclassrooms", "paris"]
-
-    # TODO: add error cases (empty text, empty response list)
