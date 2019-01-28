@@ -7,6 +7,7 @@ list of relevant terms
 """
 import json
 from string import punctuation
+from constants import DATA
 
 
 class Parser:
@@ -16,10 +17,19 @@ class Parser:
         file: file containing the list of stop words
     """
 
-    def __init__(self, file):
-        self.data_file = open(file)
+    def __init__(self):
+        self.data_file = open(DATA)
         self.stop_words = json.load(self.data_file)
-        self.word_list = []
+
+    def parse(self, request):
+        """call parse methods
+
+        Args:
+            request: POST body content
+        """
+        words = self.list_creation(request)
+        results = self.parse_list(words)
+        return results
 
     def list_creation(self, request):
         """create word list from provided string
@@ -34,9 +44,13 @@ class Parser:
         no_punctuation = no_apostrophe.translate(str.maketrans({a: " " for a in
                                                                 punctuation}))
         clean_string = no_punctuation.strip()
-        self.word_list = clean_string.split()
+        return clean_string.split()
 
-    def parse_list(self):
-        """Remove elements from word list if found in stop word file"""
-        results = [w for w in self.word_list if w not in self.stop_words]
+    def parse_list(self, words):
+        """Remove elements from word list if found in stop word file
+
+        Args:
+            words: list of words to be compared to stop words
+        """
+        results = [w for w in words if w not in self.stop_words]
         return results

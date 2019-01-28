@@ -1,6 +1,5 @@
 """Parser test Module"""
 import bot.myparser as script
-from constants import DATA
 
 
 class TestParser:
@@ -11,24 +10,34 @@ class TestParser:
         """Setup test class with test text and load parser"""
         cls.text = "Salut GrandPy! Est-ce que tu connais l'adresse " \
                    "d'OpenClassrooms Paris?"
-        cls.parser = script.Parser(DATA)
+        cls.words = ["salut", "grandpy", "est", "ce", "que",
+                     "tu", "connais", "l", "adresse", "d",
+                     "openclassrooms", "paris"]
+        cls.parser = script.Parser()
 
     def test_list_creation(self):
         """test list creation method
 
         Return:
-            list of words from test text
+            list of words from text
         """
-        self.parser.list_creation(self.text)
-        assert self.parser.word_list == ["salut", "grandpy", "est", "ce", "que",
-                                         "tu", "connais", "l", "adresse", "d",
-                                         "openclassrooms", "paris"]
+        word_list = self.parser.list_creation(self.text)
+        assert word_list == self.words
 
     def test_parse_list(self):
         """test parse list method
 
         Return:
-            relevant words from test text
+            relevant words from word list
         """
-        results = self.parser.parse_list()
+        results = self.parser.parse_list(self.words)
+        assert results == ["openclassrooms", "paris"]
+
+    def test_parse(self):
+        """test parse method
+
+        Return:
+            relevant words from text
+        """
+        results = self.parser.parse(self.text)
         assert results == ["openclassrooms", "paris"]

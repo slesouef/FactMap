@@ -8,7 +8,7 @@ responsible for the response to the ajax call
 from flask import Flask, render_template, request, jsonify
 from bot.myparser import Parser
 from bot.mymaps import Map
-from constants import DATA
+
 
 
 APP = Flask(__name__)
@@ -25,14 +25,13 @@ def index():
 
 
 @APP.route("/data", methods=["POST"])
-def parse():
+def response():
     """takes the data from POST and creates the response from backend
     treatment"""
-    myparser = Parser(DATA)
+    location = Parser().parse(request.data.decode())
+    if not location:
+        return jsonify({"error": "empty parse return"})
     mymap = Map()
-    entry = request.data.decode()
-    myparser.list_creation(entry)
-    location = myparser.parse_list()
     mymap.create_url(location)
     data = mymap.get_geocode()
     mymap.extract_map_info(data)
