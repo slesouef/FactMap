@@ -6,7 +6,7 @@ document.getElementById("submit").addEventListener("click", function () {
         document.getElementById("input").value = "";
         newPersonalMessage(entry);
         tempLoader();
-        getData(entry, createNewMap);
+        getData(entry, checkResponse);
     }
 });
 
@@ -19,7 +19,7 @@ document.getElementById("input").addEventListener("keydown", function (e) {
             document.getElementById("input").value = "";
             newPersonalMessage(entry);
             tempLoader();
-            getData(entry, createNewMap);
+            getData(entry, checkResponse);
         }
     }
 });
@@ -32,8 +32,8 @@ function newPersonalMessage(text) {
     newEntry.scrollIntoView(false);
 }
 
-function createNewMap(text) {
-    var response = JSON.parse(text);
+function createNewMap(body) {
+    var response = JSON.parse(body);
     var newMap = document.createElement("div");
     newMap.className = "message";
     newMap.innerHTML = "<div>" + response.address + "</div>" + "<div" +
@@ -63,4 +63,23 @@ function tempLoader() {
     tempDiv.innerHTML = "<div class=spinner></div>";
     document.getElementById("messages").appendChild(tempDiv);
     tempDiv.scrollIntoView(false);
+}
+
+function checkResponse(body) {
+    var response = JSON.parse(body);
+    if (response.error === "empty parse return"){
+        noQuestionMessage();
+    } else {
+        createNewMap(body);
+    }
+}
+
+function noQuestionMessage() {
+    var newMessage = document.createElement("div");
+    newMessage.className = "message";
+    newMessage.textContent = "Je n'ai pas compris ta question. Tu peux" +
+        " repeter s'il te plait?";
+    document.getElementById("spinner").outerHTML = "";
+    document.getElementById("messages").appendChild(newMessage);
+    newMessage.scrollIntoView(false);
 }
