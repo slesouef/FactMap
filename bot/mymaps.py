@@ -19,6 +19,16 @@ class Map:
         self.map_data = {}
         self.url = ""
 
+    def get_map_data(self, parsed_results):
+        """Get API map data
+
+        Args:
+            parsed_results: result of parser module
+        """
+        self.create_url(parsed_results)
+        response = self.get_geocode()
+        self.extract_map_info(response)
+
     def create_url(self, parsed_location):
         """Format call URL from parser result
 
@@ -40,13 +50,13 @@ class Map:
             error = "INVALID REQUEST. ERROR CODE: {}".format(err.code)
             return error
 
-    def extract_map_info(self, data):
+    def extract_map_info(self, api_response):
         """Extract useful information from API response
 
         Args:
-            data: content of API response
+            api_response: content of API response
         """
-        response = data
+        response = api_response
         if isinstance(response, dict):
             if response["status"] == "OK":
                 self.map_data["status"] = response["status"]

@@ -38,6 +38,11 @@ class TestMaps:
         cls.parameters = ["openclassrooms", "paris"]
         cls.map = script.Map()
 
+    def test_get_map_info(self):
+        """Test method creating map info dictionary from parsed results"""
+        self.map.get_map_data(self.parameters)
+        assert self.map.map_data["status"] == "INVALID REQUEST CONTENT"
+
     def test_create_url(self):
         """Test the API URL construction from the parser results"""
         self.map.create_url(self.parameters)

@@ -32,7 +32,5 @@ def response():
     if not location:
         return jsonify({"error": "empty parse return"})
     mymap = Map()
-    mymap.create_url(location)
-    data = mymap.get_geocode()
-    mymap.extract_map_info(data)
+    mymap.get_map_data(location)
     return jsonify(mymap.map_data)
