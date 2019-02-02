@@ -49,7 +49,7 @@ interactions.
 ### Deliveries:
 
 
- - [Application URL]()
+ - [Application URL](https://fact-map.herokuapp.com/)
  - [Github repository](https://github.com/slesouef/FactMap)
  - [Agile board location](https://trello.com/b/f5wgDaC1/factmap)
  - Project description document
@@ -59,5 +59,9 @@ interactions.
  0.1 : First alpha release. The bot replies with an address and a map in 
  response to the user entry (01/22/2019)
  
- 0.2 : Second alpha release. Address displayed in fr and marker of location 
+ 0.2 : Address displayed in fr and marker of location 
  is displayed on map (01/26/2019)
+ 
+ 0.3 : Specific messages are displayed in case of parse or map creation 
+ errors (02/02/2019)
+ 
