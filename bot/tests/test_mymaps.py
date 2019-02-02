@@ -79,3 +79,10 @@ class TestMaps:
         """Test of empty result response from API"""
         self.map.extract_map_info(EMPTY_RESPONSE)
         assert self.map.map_data["status"] == "INVALID REQUEST CONTENT"
+
+    def test_extract_map_info_server_error(self):
+        """Test of server error case on API call"""
+        self.map.url = URL
+        response = self.map.get_geocode()
+        self.map.extract_map_info(response)
+        assert self.map.map_data["status"] == "INVALID REQUEST. ERROR CODE: 400"
