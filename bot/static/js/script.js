@@ -69,6 +69,8 @@ function checkResponse(body) {
     var response = JSON.parse(body);
     if (response.error === "empty parse return"){
         noQuestionMessage();
+    } else if (response.status !== "OK") {
+        noMapMessage();
     } else {
         createNewMap(body);
     }
@@ -79,6 +81,16 @@ function noQuestionMessage() {
     newMessage.className = "message";
     newMessage.textContent = "Je n'ai pas compris ta question. Tu peux" +
         " repeter s'il te plait?";
+    document.getElementById("spinner").outerHTML = "";
+    document.getElementById("messages").appendChild(newMessage);
+    newMessage.scrollIntoView(false);
+}
+
+function noMapMessage() {
+    var newMessage = document.createElement("div");
+    newMessage.className = "message";
+    newMessage.textContent = "J'ai une poussée d'alzheimer précoce. Je ne me" +
+        " souvient plus ou ca se trouve.";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(false);
