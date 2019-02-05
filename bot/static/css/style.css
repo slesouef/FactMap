@@ -127,7 +127,7 @@ header > h1 {
     background: linear-gradient(120deg, #1d6e1d, #0a3f6e);
 }
 
-#map{
+div[id^="map"] {
     height: 200px;
     width: 324px;
 }
@@ -193,10 +193,12 @@ footer {
     bottom: 0;
     background-color: black;
     text-align: center;
-    min-height: 4em;
+    min-height: 3em;
     width: 100%;
 }
 
 footer p {
-    color: white;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 60%;
+    line-height: 50%;
 }
