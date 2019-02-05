@@ -32,30 +32,6 @@ function newPersonalMessage(text) {
     newEntry.scrollIntoView(false);
 }
 
-function createNewMap(body) {
-    var response = JSON.parse(body);
-    var newMap = document.createElement("div");
-    newMap.className = "message";
-    newMap.innerHTML = "<div>" + response.address + "</div>" + "<div" +
-        " id='map'></div>";
-    document.getElementById("spinner").outerHTML = "";
-    document.getElementById("messages").appendChild(newMap);
-    initMap(response.coordinates[0], response.coordinates[1]);
-    newMap.scrollIntoView(false);
-}
-
-function initMap(latitude, longitude) {
-    var location = {lat: latitude, lng: longitude};
-    var map = new google.maps.Map(document.getElementById("map"), {
-        center: location,
-        zoom: 13
-    });
-    var marker = new google.maps.Marker({
-        position: location,
-        map : map
-    });
-}
-
 function tempLoader() {
     var tempDiv = document.createElement("div");
     tempDiv.className = "message";
@@ -72,7 +48,7 @@ function checkResponse(body) {
     } else if (response.status !== "OK") {
         noMapMessage();
     } else {
-        createNewMap(body);
+        createNewReply(body);
     }
 }
 
@@ -94,4 +70,50 @@ function noMapMessage() {
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(false);
+}
+
+counter = 0;
+function incrementCounter() {
+    counter += 1;
+}
+
+function createNewReply(body) {
+    var response = JSON.parse(body);
+    var newReply = document.createElement("div");
+    var address = createAddress(response.address);
+    var map = createMap();
+    newReply.className = "message";
+    newReply.appendChild(address);
+    newReply.appendChild(map);
+    document.getElementById("spinner").outerHTML = "";
+    document.getElementById("messages").appendChild(newReply);
+    initMap(response.coordinates[0], response.coordinates[1]);
+    incrementCounter();
+    newReply.scrollIntoView(false);
+}
+
+function createAddress(text) {
+    var newEntry = document.createElement("div");
+    newEntry.textContent = text;
+    return newEntry;
+}
+
+function createMap() {
+    var newMap = document.createElement("div");
+    newMap.id = "map" + counter;
+    newMap.class="map";
+    return newMap;
+}
+
+function initMap(latitude, longitude) {
+    var location = {lat: latitude, lng: longitude};
+    var mapID = "map" + counter;
+    var map = new google.maps.Map(document.getElementById(mapID), {
+        center: location,
+        zoom: 12
+    });
+    var marker = new google.maps.Marker({
+        position: location,
+        map : map
+    });
 }
