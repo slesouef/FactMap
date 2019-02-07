@@ -45,7 +45,7 @@ function checkResponse(body) {
     var response = JSON.parse(body);
     if (response.error === "empty parse return"){
         noQuestionMessage();
-    } else if (response.status !== "OK") {
+    } else if (response.map.status !== "OK") {
         noMapMessage();
     } else {
         createNewReply(body);
@@ -80,14 +80,14 @@ function incrementCounter() {
 function createNewReply(body) {
     var response = JSON.parse(body);
     var newReply = document.createElement("div");
-    var address = createAddress(response.address);
+    var address = createAddress(response.map.address);
     var map = createMap();
     newReply.className = "message";
     newReply.appendChild(address);
     newReply.appendChild(map);
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newReply);
-    initMap(response.coordinates[0], response.coordinates[1]);
+    initMap(response.map.coordinates[0], response.map.coordinates[1]);
     incrementCounter();
     newReply.scrollIntoView(false);
 }
