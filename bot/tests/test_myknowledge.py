@@ -19,18 +19,29 @@ import bot.myknowledge as script
     #     "query":{
     #         "pages":{
     #             "5653202":{
-    #                 "extract":"La cité Paradis est une voie publique située dans le 10e arrondissement de Paris."
+    #                 "extract":"La cité Paradis est une voie publique située
+#                              \ dans le 10e arrondissement de Paris."
     #             }
     #         }
     #     }
     # }
 
 
-# test search url construction
-    # get search parameters from parser (possible to mutualize with gmaps??)
-    # create search url
-    # https://fr.wikipedia.org/w/api.php?action=query&format=json&list=search \
-    # &utf8=1&srsearch=cit%C3%A9%20paradis%20paris%20france
+class TestWiki:
+    """Test API call behaviour"""
+
+    @classmethod
+    def setup_class(cls):
+        """Setup test class with test paser results and load API caller"""
+        cls.wiki = script.Wiki()
+        cls.parameter = ["cité", "paradis", "paris", "france"]
+
+    def test_create_search_url(self):
+        """Test search url construction"""
+        self.wiki.create_search_url(self.parameter)
+        for item in self.parameter:
+            assert item in self.wiki.search_url
+
 
 # test call against media wiki search API
 
