@@ -65,3 +65,6 @@ interactions.
  0.3 : Specific messages are displayed in case of parse or map creation 
  errors (02/02/2019)
  
+ 0.4 : Chat bot now supports multiple question/answer interaction in 
+ displaying maps (02/07/2019)
+ 
