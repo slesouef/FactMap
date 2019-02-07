@@ -9,5 +9,5 @@ DATA = "bot/data/stop-fr.json"
 URL = "https://maps.googleapis.com/maps/api/geocode/json?language=fr&"
 
 # WikiMedia search API url
-SEARCH_URL = "https://fr.wikipedia.org/w/api.php?action=query&format=json&list\
-              =search&utf8=1&"
+SEARCH_URL = "https://fr.wikipedia.org/w/api.php?action=query&format=json&" \
+             "list=search&utf8=1&"
