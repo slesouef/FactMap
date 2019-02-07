@@ -28,9 +28,12 @@ def index():
 def response():
     """takes the data from POST and creates the response from backend
     treatment"""
+    response = {}
     location = Parser().parse(request.data.decode())
     if not location:
         return jsonify({"error": "empty parse return"})
+    response["location"] = location
     mymap = Map()
     mymap.get_map_data(location)
-    return jsonify(mymap.map_data)
+    response["map"] = mymap.map_data
+    return jsonify(response)
