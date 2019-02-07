@@ -13,7 +13,7 @@ class Wiki:
         Args:
             parsed_address: result of parser module on Maps address
         """
-        parameters = "$20".join(parsed_address)
+        parameters = "%20".join(parsed_address)
         self.search_url = "{}srsearch={}".format(SEARCH_URL, parameters)
 
 
