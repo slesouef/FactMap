@@ -55,8 +55,8 @@ function checkResponse(body) {
 function noQuestionMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "Je n'ai pas compris ta question. Tu peux" +
-        " repeter s'il te plait?";
+    newMessage.textContent = "Désolé, je n'ai pas compris ta question. Peux-tu" +
+        " répéter s'il te plaît?";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(false);
@@ -65,8 +65,8 @@ function noQuestionMessage() {
 function noMapMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "J'ai une poussée d'alzheimer précoce. Je ne me" +
-        " souvient plus ou ca se trouve.";
+    newMessage.textContent = "Désolé, je doit avoir une poussée d'alzheimer " +
+        "précoce. Je ne me souvient plus où ca se trouve.";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(false);
