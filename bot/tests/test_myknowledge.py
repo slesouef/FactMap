@@ -73,12 +73,10 @@ class TestWiki:
         self.wiki.extract_pageid()
         assert self.wiki.pageid == {"pageid": 5653202}
 
-# test extract url construction
-    # get pageid from search call repsonse
-    # create extract url
-    # https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts \
-    #                                    &exintro=&utf8=1&explaintext=1 \
-    #                                    &pageids=5653202
+    def test_create_extract_url(self):
+        """Test extract API url construction"""
+        self.wiki.create_extract_url()
+        assert self.wiki.pageid["pageid"] in self.wiki.extract_url
 
 # test response to client
     # test extract response from API
