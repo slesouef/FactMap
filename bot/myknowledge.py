@@ -24,7 +24,7 @@ class Wiki:
         self.search_url = "{}srsearch={}".format(SEARCH_URL, parameters)
 
     def get_search(self):
-        """method docstring"""
+        """Call MediaWiki search API and decode response or handle error"""
         try:
             response = request.urlopen(self.search_url)
             self.search_response = json.loads(response.read().decode("utf8"))
