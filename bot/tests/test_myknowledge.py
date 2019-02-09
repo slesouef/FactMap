@@ -1,18 +1,21 @@
 """Media API call testing"""
+import urllib.request
+import json
+
+from io import BytesIO
+
 import bot.myknowledge as script
 
 
-# create stub
-    # search api stub
-    # {
-    #     "query": {
-    #         "search": [
-    #             {
-    #                 "pageid": 5653202,
-    #             }
-    #         ]
-    #     }
-    # }
+SEARCH_RESPONSE = {
+    "query": {
+        "search": [
+            {
+               "pageid": 5653202,
+            }
+        ]
+    }
+}
 
     # extract api stub
     # {
@@ -44,6 +47,15 @@ class TestWiki:
 
 
 # test call against media wiki search API
+    def test_get_search(self, monkeypatch):
+        """Mock test of search API call"""
+
+        def mockreturn(response):
+            """Mock of response to the urllib.request method"""
+            return BytesIO(json.dumps(SEARCH_RESPONSE).encode())
+
+        monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
+        assert self.wiki.get_search() == SEARCH_RESPONSE
 
 # test extract url construction
     # get pageid from search call repsonse
