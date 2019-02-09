@@ -26,8 +26,9 @@ class Wiki:
         try:
             response = request.urlopen(self.search_url)
             self.search_response = json.loads(response.read().decode("utf8"))
-        except e.HTTPError:
-            pass
+        except e.HTTPError as err:
+            self.search_response = "INVALID REQUEST. ERROR CODE: {}".format(
+                err.code)
 
 
 # create extract url
