@@ -1,4 +1,8 @@
 """Media API call module"""
+import json
+
+from urllib import request, error as e
+
 from constants import SEARCH_URL
 
 class Wiki:
@@ -6,6 +10,7 @@ class Wiki:
 
     def __init__(self):
         self.search_url = ""
+        self.search_response = {}
 
     def create_search_url(self, parsed_address):
         """Format search URL from parser results
@@ -15,6 +20,14 @@ class Wiki:
         """
         parameters = "%20".join(parsed_address)
         self.search_url = "{}srsearch={}".format(SEARCH_URL, parameters)
+
+    def get_search(self):
+        """method docstring"""
+        try:
+            response = request.urlopen(self.search_url)
+            self.search_response = json.loads(response.read().decode("utf8"))
+        except e.HTTPError:
+            pass
 
 
 # create extract url
