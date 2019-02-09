@@ -55,7 +55,8 @@ class TestWiki:
             return BytesIO(json.dumps(SEARCH_RESPONSE).encode())
 
         monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
-        assert self.wiki.get_search() == SEARCH_RESPONSE
+        self.wiki.get_search()
+        assert self.wiki.search_response == SEARCH_RESPONSE
 
 # test extract url construction
     # get pageid from search call repsonse
