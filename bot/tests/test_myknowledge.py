@@ -67,6 +67,11 @@ class TestWiki:
         self.wiki.get_search()
         assert self.wiki.search_response == "INVALID REQUEST. ERROR CODE: 400"
 
+    def test_extract_pageid(self):
+        """Test method for extracting pageid from API response"""
+        self.wiki.search_response = SEARCH_RESPONSE
+        self.wiki.extract_pageid()
+        assert self.wiki.pageid == {"pageid": 5653202}
 
 # test extract url construction
     # get pageid from search call repsonse
