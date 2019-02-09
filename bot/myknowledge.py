@@ -3,7 +3,7 @@ import json
 
 from urllib import request, error as e
 
-from constants import SEARCH_URL
+from constants import SEARCH_URL, EXTRACT_URL
 
 
 class Wiki:
@@ -13,6 +13,7 @@ class Wiki:
         self.search_url = ""
         self.search_response = {}
         self.pageid = {}
+        self.extract_url = ""
 
     def create_search_url(self, parsed_address):
         """Format search URL from parser results
@@ -35,6 +36,11 @@ class Wiki:
     def extract_pageid(self):
         """Extract pageid value from search API repsonse"""
         self.pageid = self.search_response["query"]["search"][0]
+
+    def create_extract_url(self):
+        """Construct extract API call URL from pageid"""
+        article = self.pageid["pageid"]
+        self.extract_url = "{}&pageids={}".format(EXTRACT_URL, article)
 
 # create extract url
 # https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts \
