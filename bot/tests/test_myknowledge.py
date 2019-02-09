@@ -6,12 +6,14 @@ from io import BytesIO
 
 import bot.myknowledge as script
 
+from constants import URL
+
 
 SEARCH_RESPONSE = {
     "query": {
         "search": [
             {
-               "pageid": 5653202,
+                "pageid": 5653202,
             }
         ]
     }
@@ -46,7 +48,7 @@ class TestWiki:
             assert item in self.wiki.search_url
 
 
-# test call against media wiki search API
+    # test call against media wiki search API
     def test_get_search(self, monkeypatch):
         """Mock test of search API call"""
 
@@ -57,6 +59,14 @@ class TestWiki:
         monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
         self.wiki.get_search()
         assert self.wiki.search_response == SEARCH_RESPONSE
+
+    # test Media wiki API server error : http code 400+
+    def test_get_search_error(self):
+        """Server error HTTP response code handling test """
+        self.wiki.search_url = URL
+        self.wiki.get_search()
+        assert self.wiki.search_response == "INVALID REQUEST. ERROR CODE: 400"
+
 
 # test extract url construction
     # get pageid from search call repsonse
