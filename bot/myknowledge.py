@@ -48,5 +48,6 @@ class Wiki:
         try:
             response = request.urlopen(self.extract_url)
             self.extract_response = json.loads(response.read().decode("utf8"))
-        except e.HTTPError:
-            pass
+        except e.HTTPError as err:
+            self.extract_response = "INVALID REQUEST. ERROR CODE: {}".format(
+                err.code)
