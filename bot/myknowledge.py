@@ -36,7 +36,10 @@ class Wiki:
 
     def extract_pageid(self):
         """Extract pageid value from search API repsonse"""
-        self.pageid = self.search_response["query"]["search"][0]
+        if self.search_response["query"]["search"]:
+            self.pageid = self.search_response["query"]["search"][0]
+        else:
+            self.pageid = "INVALID REQUEST CONTENT"
 
     def create_extract_url(self):
         """Construct extract API call URL from pageid"""
