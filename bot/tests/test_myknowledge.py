@@ -93,6 +93,12 @@ class TestWiki:
         self.wiki.extract_pageid()
         assert self.wiki.pageid == "INVALID REQUEST CONTENT"
 
+    def test_extract_pageid_server_error(self):
+        """Test server error handling in response parsing"""
+        self.wiki.search_response = "INVALID REQUEST. ERROR CODE: 400"
+        self.wiki.extract_pageid()
+        assert self.wiki.pageid == "INVALID REQUEST. ERROR CODE: 400"
+
     def test_create_extract_url(self):
         """Test extract API url construction"""
         self.wiki.create_extract_url()
