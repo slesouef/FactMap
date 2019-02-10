@@ -14,6 +14,7 @@ class Wiki:
         self.search_response = {}
         self.pageid = {}
         self.extract_url = ""
+        self.extract_response = {}
 
     def create_search_url(self, parsed_address):
         """Format search URL from parser results
@@ -42,6 +43,10 @@ class Wiki:
         article = self.pageid["pageid"]
         self.extract_url = "{}&pageids={}".format(EXTRACT_URL, article)
 
-# create extract url
-# https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts \
-# &exintro=&utf8=1&explaintext=1&pageids=5653202
+    def get_extract(self):
+        """Call MediaWiki extract API and decode response or handle error"""
+        try:
+            response = request.urlopen(self.extract_url)
+            self.extract_response = json.loads(response.read().decode("utf8"))
+        except e.HTTPError:
+            pass
