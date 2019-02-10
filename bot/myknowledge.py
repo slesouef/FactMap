@@ -51,3 +51,11 @@ class Wiki:
         except e.HTTPError as err:
             self.extract_response = "INVALID REQUEST. ERROR CODE: {}".format(
                 err.code)
+
+    def extract_text(self):
+        """Extract useful information from API response"""
+        if "errors" not in self.extract_response:
+            page = self.pageid["pageid"]
+            response = self.extract_response["query"]["pages"][str(page)][
+                "extract"]
+            return response
