@@ -101,6 +101,7 @@ class TestWiki:
 
     def test_create_extract_url(self):
         """Test extract API url construction"""
+        self.wiki.pageid = {"pageid": 5653202}
         self.wiki.create_extract_url()
         assert str(self.wiki.pageid["pageid"]) in self.wiki.extract_url
 
