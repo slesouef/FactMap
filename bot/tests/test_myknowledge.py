@@ -20,22 +20,22 @@ SEARCH_RESPONSE = {
 }
 
 EXTRACT_RESPONSE = {
-    "query":{
-        "pages":{
-            "5653202":{
-                "extract":"La cité Paradis est une voie publique située dans "
-                          "le 10e arrondissement de Paris."
+    "query": {
+        "pages": {
+            "5653202": {
+                "extract": "La cité Paradis est une voie publique située dans "
+                           "le 10e arrondissement de Paris."
             }
         }
     }
 }
 
 EXTRACT_EMPTY = {
-    "query":{
-        "pages":{
-            "0":{
-                "pageid":0,
-                "missing":""
+    "query": {
+        "pages": {
+            "0": {
+                "pageid": 0,
+                "missing": ""
             }
         }
     }
@@ -56,7 +56,6 @@ class TestWiki:
         self.wiki.create_search_url(self.parameter)
         for item in self.parameter:
             assert item in self.wiki.search_url
-
 
     # test call against mediawiki search API
     def test_get_search(self, monkeypatch):
@@ -121,3 +120,10 @@ class TestWiki:
         self.wiki.extract_response = EXTRACT_EMPTY
         extract = self.wiki.extract_text()
         assert extract == "INVALID REQUEST CONTENT"
+
+    def text_extract_text_server_error(self):
+        """Test server error handling in response parsing"""
+        self.wiki.extract_response = "INVALID REQUEST. ERROR CODE: 400"
+        extract = self.wiki.extract_text()
+        print(extract)
+        assert extract == "INVALID REQUEST. ERROR CODE: 400"
