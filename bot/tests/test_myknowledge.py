@@ -30,6 +30,17 @@ EXTRACT_RESPONSE = {
     }
 }
 
+EXTRACT_EMPTY = {
+    "query":{
+        "pages":{
+            "8":{
+                "pageid":8,
+                "missing":""
+            }
+        }
+    }
+}
+
 
 class TestWiki:
     """Test API call behaviour"""
@@ -103,6 +114,9 @@ class TestWiki:
         assert extract == "La cité Paradis est une voie publique située dans " \
                           "le 10e arrondissement de Paris."
 
-# test response to client
-    # test extract response from API
-    # test reponse sent to client
+    # empty response ==> http 200 status ZERO RESPONSE
+    def test_extract_text_empty(self):
+        """Test empty results from API"""
+        self.wiki.extract_response = EXTRACT_EMPTY
+        extract = self.wiki.extract_text()
+        assert extract == "INVALID REQUEST CONTENT"
