@@ -8,14 +8,20 @@ import bot.myknowledge as script
 
 from constants import URL
 
-
 SEARCH_RESPONSE = {
     "query": {
         "search": [
-            {
-                "pageid": 5653202,
-            }
+            {"pageid": 5653202,
+             }
         ]
+    }
+}
+
+SEARCH_EMPTY = {
+    "query": {
+        "searchinfo": {
+            "totalhits": 0
+        },
     }
 }
 
@@ -82,6 +88,13 @@ class TestWiki:
         self.wiki.extract_pageid()
         assert self.wiki.pageid == {"pageid": 5653202}
 
+    # empty response ==> http 200 status
+    def test_extract_pageid_empty(self):
+        """Test empty results from API"""
+        self.wiki.search_response = SEARCH_EMPTY
+        self.wiki.extract_pageid()
+        assert self.wiki.pageid == "INVALID REQUEST CONTENT"
+
     def test_create_extract_url(self):
         """Test extract API url construction"""
         self.wiki.create_extract_url()
@@ -113,7 +126,7 @@ class TestWiki:
         assert extract == "La cité Paradis est une voie publique située dans " \
                           "le 10e arrondissement de Paris."
 
-    # empty response ==> http 200 status ZERO RESPONSE
+    # empty response ==> http 200 status
     def test_extract_text_empty(self):
         """Test empty results from API"""
         self.wiki.pageid["pageid"] = 0
