@@ -19,9 +19,7 @@ SEARCH_RESPONSE = {
 
 SEARCH_EMPTY = {
     "query": {
-        "searchinfo": {
-            "totalhits": 0
-        },
+        "search": []
     }
 }
 
