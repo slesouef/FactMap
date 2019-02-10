@@ -19,17 +19,16 @@ SEARCH_RESPONSE = {
     }
 }
 
-    # extract api stub
-    # {
-    #     "query":{
-    #         "pages":{
-    #             "5653202":{
-    #                 "extract":"La cité Paradis est une voie publique située
-#                              \ dans le 10e arrondissement de Paris."
-    #             }
-    #         }
-    #     }
-    # }
+EXTRACT_RESPONSE = {
+    "query":{
+        "pages":{
+            "5653202":{
+                "extract":"La cité Paradis est une voie publique située dans "
+                          "le 10e arrondissement de Paris."
+            }
+        }
+    }
+}
 
 
 class TestWiki:
@@ -77,6 +76,17 @@ class TestWiki:
         """Test extract API url construction"""
         self.wiki.create_extract_url()
         assert str(self.wiki.pageid["pageid"]) in self.wiki.extract_url
+
+    def test_get_extract(self, monkeypatch):
+        """Mock test of extract API call"""
+
+        def mockreturn(response):
+            """Mock of response to the urllib.request method"""
+            return BytesIO(json.dumps(EXTRACT_RESPONSE).encode())
+
+        monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
+        self.wiki.get_extract()
+        assert self.wiki.extract_response == EXTRACT_RESPONSE
 
 # test response to client
     # test extract response from API
