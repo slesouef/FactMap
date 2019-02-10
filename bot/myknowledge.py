@@ -54,10 +54,13 @@ class Wiki:
 
     def extract_text(self):
         """Extract useful information from API response"""
-        page = self.pageid["pageid"]
-        response = self.extract_response["query"]["pages"][str(page)]
-        if "missing" not in response:
-            text = response["extract"]
+        if isinstance(self.extract_response, dict):
+            page = self.pageid["pageid"]
+            response = self.extract_response["query"]["pages"][str(page)]
+            if "missing" not in response:
+                text = response["extract"]
+            else:
+                text = "INVALID REQUEST CONTENT"
         else:
-            text = "INVALID REQUEST CONTENT"
+            text = self.extract_response
         return text
