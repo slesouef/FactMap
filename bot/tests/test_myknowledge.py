@@ -121,7 +121,7 @@ class TestWiki:
         extract = self.wiki.extract_text()
         assert extract == "INVALID REQUEST CONTENT"
 
-    def text_extract_text_server_error(self):
+    def test_extract_text_server_error(self):
         """Test server error handling in response parsing"""
         self.wiki.extract_response = "INVALID REQUEST. ERROR CODE: 400"
         extract = self.wiki.extract_text()
