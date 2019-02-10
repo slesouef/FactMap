@@ -54,8 +54,10 @@ class Wiki:
 
     def extract_text(self):
         """Extract useful information from API response"""
-        if "errors" not in self.extract_response:
-            page = self.pageid["pageid"]
-            response = self.extract_response["query"]["pages"][str(page)][
-                "extract"]
-            return response
+        page = self.pageid["pageid"]
+        response = self.extract_response["query"]["pages"][str(page)]
+        if "missing" not in response:
+            text = response["extract"]
+        else:
+            text = "INVALID REQUEST CONTENT"
+        return text

@@ -33,8 +33,8 @@ EXTRACT_RESPONSE = {
 EXTRACT_EMPTY = {
     "query":{
         "pages":{
-            "8":{
-                "pageid":8,
+            "0":{
+                "pageid":0,
                 "missing":""
             }
         }
@@ -117,6 +117,7 @@ class TestWiki:
     # empty response ==> http 200 status ZERO RESPONSE
     def test_extract_text_empty(self):
         """Test empty results from API"""
+        self.wiki.pageid["pageid"] = 0
         self.wiki.extract_response = EXTRACT_EMPTY
         extract = self.wiki.extract_text()
         assert extract == "INVALID REQUEST CONTENT"
