@@ -47,7 +47,7 @@ class TestWiki:
             assert item in self.wiki.search_url
 
 
-    # test call against media wiki search API
+    # test call against mediawiki search API
     def test_get_search(self, monkeypatch):
         """Mock test of search API call"""
 
@@ -77,6 +77,7 @@ class TestWiki:
         self.wiki.create_extract_url()
         assert str(self.wiki.pageid["pageid"]) in self.wiki.extract_url
 
+    # test call against mediawiki extract API
     def test_get_extract(self, monkeypatch):
         """Mock test of extract API call"""
 
@@ -87,6 +88,13 @@ class TestWiki:
         monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
         self.wiki.get_extract()
         assert self.wiki.extract_response == EXTRACT_RESPONSE
+
+    # test Media wiki API server error : http code 400+
+    def test_get_extract_error(self):
+        """Server error HTTP response code handling test"""
+        self.wiki.extract_url = URL
+        self.wiki.get_extract()
+        assert self.wiki.extract_response == "INVALID REQUEST. ERROR CODE: 400"
 
 # test response to client
     # test extract response from API
