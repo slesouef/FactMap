@@ -96,6 +96,13 @@ class TestWiki:
         self.wiki.get_extract()
         assert self.wiki.extract_response == "INVALID REQUEST. ERROR CODE: 400"
 
+    def test_extract_text(self):
+        """Test method for extracting extract text from API response"""
+        self.wiki.extract_response = EXTRACT_RESPONSE
+        extract = self.wiki.extract_text()
+        assert extract == "La cité Paradis est une voie publique située dans " \
+                          "le 10e arrondissement de Paris."
+
 # test response to client
     # test extract response from API
     # test reponse sent to client
