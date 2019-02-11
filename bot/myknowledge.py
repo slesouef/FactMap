@@ -15,18 +15,15 @@ class Extract:
         Args:
             parsed_address: result of parser module on Map address
         """
-        response = {}
         search = self._create_search_url(parsed_address)
         search_results = self._api_call(search)
         page = self._extract_pageid(search_results)
         if page["status"] != "OK":
-            response["wiki"] = page
-            return response
+            return page
         extract_page = self._create_extract_url(page)
         extract_results = self._api_call(extract_page)
         extract = self._extract_text(page, extract_results)
-        response["wiki"] = extract
-        return response
+        return extract
 
     def _create_search_url(self, parsed_address):
         """Format search URL from parser results
