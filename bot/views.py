@@ -8,6 +8,7 @@ responsible for the response to the ajax call
 from flask import Flask, render_template, request, jsonify
 from bot.myparser import Parser
 from bot.mymaps import Map
+from bot.myknowledge import Extract
 
 
 
@@ -32,8 +33,8 @@ def response():
     location = Parser().parse(request.data.decode())
     if not location:
         return jsonify({"error": "empty parse return"})
-    response["location"] = location
-    mymap = Map()
-    mymap.get_map_data(location)
-    response["map"] = mymap.map_data
+    my_map = Map().get_map_data(location)
+    response["map"] = my_map
+    my_extract = Extract().get_text_extract(location)
+    response["wiki"] = my_extract
     return jsonify(response)
