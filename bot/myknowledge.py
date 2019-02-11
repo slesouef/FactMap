@@ -15,7 +15,7 @@ class Extract:
         Args:
             parsed_address: result of parser module on Map address
         """
-        response ={}
+        response = {}
         search = self._create_search_url(parsed_address)
         search_results = self._api_call(search)
         page = self._extract_pageid(search_results)
@@ -47,8 +47,8 @@ class Extract:
             retrieved during search
         """
         search_results = pageid
-        id = search_results["id"]
-        extract_url = "{}&pageids={}".format(EXTRACT_URL, id)
+        target = search_results["id"]
+        extract_url = "{}&pageids={}".format(EXTRACT_URL, target)
         return extract_url
 
     def _api_call(self, url):
@@ -90,10 +90,10 @@ class Extract:
             response: API call server response
         """
         search_results = pageid
-        id = search_results["id"]
+        target = search_results["id"]
         text = {}
         if isinstance(response, dict):
-            result = response["query"]["pages"][str(id)]
+            result = response["query"]["pages"][str(target)]
             if "missing" not in result:
                 text["status"] = "OK"
                 text["extract"] = result["extract"]

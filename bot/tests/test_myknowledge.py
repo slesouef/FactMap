@@ -132,8 +132,8 @@ class TestExtract:
     # empty response ==> http 200 status
     def test_extract_text_empty(self):
         """Test empty results from API"""
-        id = {"id": 0}
-        text = self.extract._extract_text(id, EXTRACT_EMPTY)
+        pageid = {"id": 0}
+        text = self.extract._extract_text(pageid, EXTRACT_EMPTY)
         assert text["status"] == "INVALID REQUEST CONTENT"
 
     def test_extract_text_server_error(self):
