@@ -51,7 +51,7 @@ class TestExtract:
         """Setup test class with test paser results and load API caller"""
         cls.extract = script.Extract()
         cls.parameter = ["cité", "paradis", "paris", "france"]
-        cls.test_pageid = 5653202
+        cls.test_pageid = {"id": 5653202}
 
     def test_get_text_extract(self, monkeypatch):
         """Test the get text from address method"""
@@ -62,8 +62,9 @@ class TestExtract:
 
         monkeypatch.setattr(request, "urlopen", mockreturn)
         text = self.extract.get_text_extract(self.parameter)
-        assert text == "La cité Paradis est une voie publique située dans " \
-                          "le 10e arrondissement de Paris."
+        assert text["wiki"]["extract"] == "La cité Paradis est une voie " \
+                                          "publique située dans le 10e " \
+                                          "arrondissement de Paris."
 
     def test_get_text_extract_no_page(self, monkeypatch):
         """Test get text when no page is returned from search"""
@@ -74,7 +75,7 @@ class TestExtract:
 
         monkeypatch.setattr(request, "urlopen", mockreturn)
         text = self.extract.get_text_extract(self.parameter)
-        assert text == "INVALID REQUEST CONTENT"
+        assert text["wiki"]["status"] == "INVALID REQUEST CONTENT"
 
     def test_create_search_url(self):
         """Test search url construction"""
@@ -86,7 +87,7 @@ class TestExtract:
     def test_create_extract_url(self):
         """Test extract API url construction"""
         extract_url = self.extract._create_extract_url(self.test_pageid)
-        assert str(self.test_pageid) in extract_url
+        assert str(self.test_pageid["id"]) in extract_url
 
     # test call against mediawiki search API
     def test_api_call(self, monkeypatch):
@@ -101,7 +102,7 @@ class TestExtract:
         assert response == MOCK_RESPONSE
 
     # test Media wiki API server error : http code 400+
-    def test_get_search_error(self):
+    def test_api_call_error(self):
         """Server error HTTP response code handling test """
         response = self.extract._api_call(URL)
         assert response == "INVALID REQUEST. ERROR CODE: 400"
@@ -109,33 +110,34 @@ class TestExtract:
     def test_extract_pageid(self):
         """Test method for extracting pageid from API response"""
         pageid = self.extract._extract_pageid(MOCK_RESPONSE)
-        assert pageid == self.test_pageid
+        assert pageid["id"] == self.test_pageid["id"]
 
     # empty response ==> http 200 status
     def test_extract_pageid_empty(self):
         """Test empty results from API"""
         pageid = self.extract._extract_pageid(SEARCH_EMPTY)
-        assert pageid == "INVALID REQUEST CONTENT"
+        assert pageid["status"] == "INVALID REQUEST CONTENT"
 
     def test_extract_pageid_server_error(self):
         """Test server error handling in response parsing"""
         pageid = self.extract._extract_pageid("INVALID REQUEST. ERROR CODE: 400")
-        assert pageid == "INVALID REQUEST. ERROR CODE: 400"
+        assert pageid["status"] == "INVALID REQUEST. ERROR CODE: 400"
 
     def test_extract_text(self):
         """Test method for extracting extract text from API response"""
         text = self.extract._extract_text(self.test_pageid, MOCK_RESPONSE)
-        assert text == "La cité Paradis est une voie publique située dans " \
-                          "le 10e arrondissement de Paris."
+        assert text["extract"] == "La cité Paradis est une voie publique " \
+                                  "située dans le 10e arrondissement de Paris."
 
     # empty response ==> http 200 status
     def test_extract_text_empty(self):
         """Test empty results from API"""
-        text = self.extract._extract_text(0, EXTRACT_EMPTY)
-        assert text == "INVALID REQUEST CONTENT"
+        id = {"id": 0}
+        text = self.extract._extract_text(id, EXTRACT_EMPTY)
+        assert text["status"] == "INVALID REQUEST CONTENT"
 
     def test_extract_text_server_error(self):
         """Test server error handling in response parsing"""
         text = self.extract._extract_text(self.test_pageid,
                                           "INVALID REQUEST. ERROR CODE: 400")
-        assert text == "INVALID REQUEST. ERROR CODE: 400"
+        assert text["status"] == "INVALID REQUEST. ERROR CODE: 400"

@@ -10,20 +10,23 @@ class Extract:
     """Call WikiMedia API and retrieve page extract from response"""
 
     def get_text_extract(self, parsed_address):
-        """Return the wiki text extract from a parsed address
+        """Return the wiki text extract from parsed address in a dictionary
 
         Args:
             parsed_address: result of parser module on Map address
         """
+        response ={}
         search = self._create_search_url(parsed_address)
         search_results = self._api_call(search)
         page = self._extract_pageid(search_results)
-        if isinstance(page, str):
-            return page
+        if page["status"] != "OK":
+            response["wiki"] = page
+            return response
         extract_page = self._create_extract_url(page)
         extract_results = self._api_call(extract_page)
         extract = self._extract_text(page, extract_results)
-        return extract
+        response["wiki"] = extract
+        return response
 
     def _create_search_url(self, parsed_address):
         """Format search URL from parser results
@@ -40,9 +43,12 @@ class Extract:
         """Construct extract API call URL from pageid
 
         Args:
-            pageid: mediawiki identifier of the page retrieved in search
+            pageid: dictionary with mediawiki identifier of the page
+            retrieved during search
         """
-        extract_url = "{}&pageids={}".format(EXTRACT_URL, pageid)
+        search_results = pageid
+        id = search_results["id"]
+        extract_url = "{}&pageids={}".format(EXTRACT_URL, id)
         return extract_url
 
     def _api_call(self, url):
@@ -65,13 +71,15 @@ class Extract:
         Args:
             response: API call server response
         """
+        pageid = {}
         if isinstance(response, dict):
             if response["query"]["search"]:
-                pageid = response["query"]["search"][0]["pageid"]
+                pageid["status"] = "OK"
+                pageid["id"] = response["query"]["search"][0]["pageid"]
             else:
-                pageid = "INVALID REQUEST CONTENT"
+                pageid["status"] = "INVALID REQUEST CONTENT"
         else:
-            pageid = response
+            pageid["status"] = response
         return pageid
 
     def _extract_text(self, pageid, response):
@@ -81,12 +89,16 @@ class Extract:
             pageid: mediawiki identifier of the page retrieved in search
             response: API call server response
         """
+        search_results = pageid
+        id = search_results["id"]
+        text = {}
         if isinstance(response, dict):
-            response = response["query"]["pages"][str(pageid)]
-            if "missing" not in response:
-                text = response["extract"]
+            result = response["query"]["pages"][str(id)]
+            if "missing" not in result:
+                text["status"] = "OK"
+                text["extract"] = result["extract"]
             else:
-                text = "INVALID REQUEST CONTENT"
+                text["status"] = "INVALID REQUEST CONTENT"
         else:
-            text = response
+            text["status"] = response
         return text
