@@ -35,6 +35,9 @@ def response():
         return jsonify({"error": "empty parse return"})
     my_map = Map().get_map_data(location)
     response["map"] = my_map
-    my_extract = Extract().get_text_extract(location)
-    response["wiki"] = my_extract
+    if response["map"]["status"] == "OK":
+        address = my_map["address"]
+        target = Parser().parse(address)
+        my_extract = Extract().get_text_extract(target)
+        response["wiki"] = my_extract
     return jsonify(response)
