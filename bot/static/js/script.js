@@ -45,8 +45,6 @@ function checkResponse(body) {
     var response = JSON.parse(body);
     if (response.error === "empty parse return"){
         noQuestionMessage();
-    } else if (response.map.status !== "OK") {
-        noMapMessage();
     } else {
         createNewReply(body);
     }
@@ -62,16 +60,6 @@ function noQuestionMessage() {
     newMessage.scrollIntoView(false);
 }
 
-function noMapMessage() {
-    var newMessage = document.createElement("div");
-    newMessage.className = "message";
-    newMessage.textContent = "Désolé, je doit avoir une poussée d'alzheimer " +
-        "précoce. Je ne me souvient plus où ca se trouve.";
-    document.getElementById("spinner").outerHTML = "";
-    document.getElementById("messages").appendChild(newMessage);
-    newMessage.scrollIntoView(false);
-}
-
 counter = 0;
 function incrementCounter() {
     counter += 1;
@@ -80,11 +68,28 @@ function incrementCounter() {
 function createNewReply(body) {
     var response = JSON.parse(body);
     var newReply = document.createElement("div");
+    var breakline = document.createElement("br");
     var address = createAddress(response.map.address);
     var map = createMap();
-    newReply.className = "message";
-    newReply.appendChild(address);
-    newReply.appendChild(map);
+    if (response.map.status !== "OK") {
+        noLocationMessage();
+    } else if (response.wiki.status !== "OK") {
+        var noExtract = noKnowledgeMessage();
+        newReply.className = "message";
+        newReply.appendChild(address);
+        newReply.appendChild(breakline);
+        newReply.appendChild(map);
+        newReply.appendChild(breakline);
+        newReply.appendChild(noExtract);
+    } else {
+        var extract = createKnowledge(response.wiki.extract);
+        newReply.className = "message";
+        newReply.appendChild(address);
+        newReply.appendChild(breakline);
+        newReply.appendChild(map);
+        newReply.appendChild(breakline);
+        newReply.appendChild(extract);
+    }
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newReply);
     initMap(response.map.coordinates[0], response.map.coordinates[1]);
@@ -94,8 +99,18 @@ function createNewReply(body) {
 
 function createAddress(text) {
     var newEntry = document.createElement("div");
-    newEntry.textContent = text;
+    newEntry.textContent = "Cela se trouve a l'address suivante: " + text;
     return newEntry;
+}
+
+function noLocationMessage() {
+    var newMessage = document.createElement("div");
+    newMessage.className = "message";
+    newMessage.textContent = "Désolé, je doit avoir une poussée d'alzheimer " +
+        "précoce. Je ne me souvient plus où ca se trouve.";
+    document.getElementById("spinner").outerHTML = "";
+    document.getElementById("messages").appendChild(newMessage);
+    newMessage.scrollIntoView(false);
 }
 
 function createMap() {
@@ -103,6 +118,19 @@ function createMap() {
     newMap.id = "map" + counter;
     newMap.class="map";
     return newMap;
+}
+
+function createKnowledge(text) {
+    var newEntry = document.createElement("div");
+    newEntry.textContent = "J'y ai pas mal traine plus jeune. Je peut donc" +
+        " te dire ceci: \n" + text;
+    return newEntry;
+}
+
+function noKnowledgeMessage() {
+    var newMessage = document.createElement("div");
+    newMessage.textContent = "Désolé, mais je ne sais rien sur cet endroit";
+    return newMessage;
 }
 
 function initMap(latitude, longitude) {
