@@ -62,7 +62,7 @@ class TestExtract:
 
         monkeypatch.setattr(request, "urlopen", mockreturn)
         text = self.extract.get_text_extract(self.parameter)
-        assert text["wiki"]["extract"] == "La cité Paradis est une voie " \
+        assert text["extract"] == "La cité Paradis est une voie " \
                                           "publique située dans le 10e " \
                                           "arrondissement de Paris."
 
@@ -75,7 +75,7 @@ class TestExtract:
 
         monkeypatch.setattr(request, "urlopen", mockreturn)
         text = self.extract.get_text_extract(self.parameter)
-        assert text["wiki"]["status"] == "INVALID REQUEST CONTENT"
+        assert text["status"] == "INVALID REQUEST CONTENT"
 
     def test_create_search_url(self):
         """Test search url construction"""
