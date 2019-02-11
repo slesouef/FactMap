@@ -37,8 +37,10 @@ class Parser:
         Args:
             request: POST body content
         """
+
         no_caps = request.lower()
-        no_apostrophe = no_caps.replace("'", " ")
+        no_numbers = "".join([char for char in no_caps if not char.isdigit()])
+        no_apostrophe = no_numbers.replace("'", " ")
         # remove punctuation marks by replacing it with space after comparing
         # each string character to string.punctuation elements
         no_punctuation = no_apostrophe.translate(str.maketrans({a: " " for a in
