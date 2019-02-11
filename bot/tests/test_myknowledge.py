@@ -34,11 +34,11 @@ SEARCH_EMPTY = {
 
 EXTRACT_EMPTY = {
     "query": {
-        "pages": {
-            "0": {
-                "missing": ""
+        "pages": [
+            {
+            "missing": ""
             }
-        }
+        ]
     }
 }
 

@@ -90,8 +90,9 @@ class Extract:
         target = search_results["id"]
         text = {}
         if isinstance(response, dict):
-            result = response["query"]["pages"][str(target)]
-            if "missing" not in result:
+            test = response["query"]["pages"][0]
+            if "missing" not in test:
+                result = response["query"]["pages"][str(target)]
                 text["status"] = "OK"
                 text["extract"] = result["extract"]
             else:
