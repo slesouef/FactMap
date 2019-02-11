@@ -90,11 +90,10 @@ class Extract:
         target = search_results["id"]
         text = {}
         if isinstance(response, dict):
-            test = response["query"]["pages"][0]
-            if "missing" not in test:
-                result = response["query"]["pages"][str(target)]
+            result = response["query"]["pages"]
+            if isinstance(result, dict):
                 text["status"] = "OK"
-                text["extract"] = result["extract"]
+                text["extract"] = result[str(target)]["extract"]
             else:
                 text["status"] = "INVALID REQUEST CONTENT"
         else:
