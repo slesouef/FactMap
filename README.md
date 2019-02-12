@@ -68,3 +68,4 @@ interactions.
  0.4 : Chat bot now supports multiple question/answer interaction in 
  displaying maps (02/07/2019)
  
+ 1.0 : Feature complete release. (02/12/2019)
