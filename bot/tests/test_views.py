@@ -20,7 +20,15 @@ class TestView:
         response = self.client.get("/index/")
         assert response.status_code == 200
 
-    def test_route_time(self):
-        """Test AJAX request route"""
+    def test_route_data_parser_error(self):
+        """Test AJAX request route without request body"""
         response = self.client.post("/data")
         assert response.status_code == 200
+
+    def test_route_data_map_error(self):
+        """Test AJAX test route with request body"""
+        response = self.client.post("/data", data=b"ou se trouve openclassroom"
+                                                  b"paris?")
+        assert response.status_code == 200
+
+# TODO: test successful response path
