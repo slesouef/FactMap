@@ -16,6 +16,7 @@ html, body {
 body {
     background-image: linear-gradient(135deg, #79cd40, #0aa4ff);
     background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
     margin: 0;
 }
@@ -41,10 +42,7 @@ header {
 }
 
 .chat {
-    margin-left: auto;
-    margin-right: auto;
-    width: 35em;
-    height: 55vh;
+    min-height: 55vh;
     overflow: hidden;
     box-shadow: 0 5px 30px;
     background-color: rgba(0, 0, 0, .5);
@@ -55,39 +53,38 @@ header {
 }
 
 .chat-title {
-    flex: 0 1 45px;
-    position: relative;
-    z-index: 2;
     background: rgba(0, 0, 0, .3);
     color: #fff;
-    text-transform: capitalize;
-    text-align: left;
-    padding: 1em 1em 1em 4em;
 }
 
-.chat-title > h1, h2 {
+.grandpy > h1, h2 {
     font-weight: normal;
     font-size: 1rem;
-    margin: 0;
-    padding: 0;
+    text-transform: capitalize;
+    text-align: left;
 }
 
-.chat-title > h2 {
+.grandpy > h1 {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+}
+
+.grandpy > h2 {
     color: rgba(255, 255, 255, .5);
     font-size: .8rem;
     letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+}
+
+.separator {
+    max-height: 0;
 }
 
 .avatar {
-    position: absolute;
-    z-index: 1;
-    top: .8em;
-    left: .5em;
-    width: 2.8em;
-    height: 2.8em;
+    margin: .5rem;
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 30px;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
     border: 2px solid rgba(255, 255, 255, 0.7);
 }
@@ -104,17 +101,13 @@ header {
     overflow: auto;
 }
 
-.messages::-webkit-scrollbar {
-    display: none;
-}
-
 .message {
     clear: both;
     float: left;
     background: rgba(0, 0, 0, .3);
     border-radius: 10px;
-    padding: .5em;
-    margin: .4em 1em;
+    padding: .5rem;
+    margin: .4rem 1rem;
 }
 
 .message-personal {
@@ -146,10 +139,8 @@ div[id^="map"] {
 }
 
 .message-box {
-    flex: 0 1 40px;
     background: rgba(0, 0, 0, .3);
-    width: 100%;
-    padding: .5em;
+    padding: .5rem;
     position: relative;
 }
 
@@ -158,10 +149,9 @@ div[id^="map"] {
     border: none;
     outline: none !important;
     resize: none;
-    width: 32em;
-    font-size: .9em;
-    padding-top: .3em;
-    height: 1.7em;
+    width: 32rem;
+    font-size: .9rem;
+    height: 1.7rem;
     margin: 0;
     color: rgba(255, 255, 255, .7);
 }
@@ -172,21 +162,18 @@ textarea::-webkit-scrollbar {
 
 .message-submit {
     position: absolute;
-    top: .7em;
-    right: .8em;
     color: #fff;
     background: rgba(51, 196, 117, 0.89);
     border-radius: 5px;
     border: none;
     outline: none !important;
     text-transform: uppercase;
-    padding: .25em .4em;
 }
 
 footer {
     background-color: black;
     text-align: center;
-    min-height: 3em;
+    min-height: 3rem;
 }
 
 footer p {

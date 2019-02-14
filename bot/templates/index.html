@@ -43,26 +43,40 @@
                 qui vous raconte sa vie</h1>
         </div>
     </header>
-    <section class="chat row">
-        <div class="chat-title">
-            <h1>GrandPy</h1>
-            <h2>Directionalist</h2>
-            <figure class="avatar">
-                <img src="{{ url_for('static', filename='img/26943211820_e98f297402_q.jpg') }}"
-                     alt="Cool Papy"/>
-            </figure>
-        </div>
-        <div class="messages" id="messages">
-            <div class="message">Bonjour, mon petit! Que veux-tu
-                savoir aujourd'hui?
+    <section class="row justify-content-center">
+        <div class="chat row col-md-8 col-lg-6">
+            <div class="row chat-title">
+                <div class="row col no-gutters">
+                    <div class="col-4">
+                        <figure class="avatar">
+                            <img class="img-fluid" alt="Cool Papy"
+                                 src="{{ url_for('static', filename='img/26943211820_e98f297402_q.jpg') }}"/>
+                        </figure>
+                    </div>
+                    <div class="row grandpy col-7 mr-auto">
+                        <h1 class="col">GrandPy</h1>
+                        <div class="w-100 separator"></div>
+                        <h2 class="col">Directionalist</h2>
+                    </div>
+                </div>
+                <div class="col-4 col-sm"></div>
             </div>
-        </div>
-        <div class="message-box">
-        <textarea placeholder="Pose une question a GrandPy..."
-                  class="message-input" id="input"></textarea>
-            <button type="button" class="message-submit"
-                    id="submit">Envoyer
-            </button>
+            <div class="messages" id="messages">
+                <div class="message">Bonjour, mon petit! Que veux-tu
+                    savoir aujourd'hui?
+                </div>
+            </div>
+            <form class="message-box row form-inline">
+                <div class="input-group row col no-gutters">
+                    <textarea placeholder="Pose une question a GrandPy..."
+                              class="message-input col-7 col-sm-10"
+                              id="input"></textarea>
+                    <span class="input-group-addon col-4 col-sm-2 ml-auto">
+                        <button type="button" class="message-submit"
+                                id="submit">Envoyer</button>
+                    </span>
+                </div>
+            </form>
         </div>
     </section>
     <footer class="fixed-bottom">
