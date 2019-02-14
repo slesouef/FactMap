@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}"/>
@@ -29,40 +30,49 @@
 
     <title>FactMaps - information bot</title>
 </head>
+
 <body>
-<header>
-    <img src="{{ url_for('static', filename='img/Map-icon.svg') }}" class="logo"
-    alt="logo" title="Logo"/>
-    <h1>Bienvenue chez GrandPy - Le bot qui vous raconte sa vie</h1>
-</header>
-<section class="chat">
-    <div class="chat-title">
-        <h1>GrandPy</h1>
-        <h2>Directionalist</h2>
-        <figure class="avatar">
-            <img src="{{ url_for('static', filename='img/26943211820_e98f297402_q.jpg') }}"
-                 alt="Cool Papy"/>
-        </figure>
-    </div>
-    <div class="messages" id="messages">
-        <div class="message">Bonjour, mon petit! Que veux-tu
-            savoir aujourd'hui?
+<div class="container-fluid">
+    <header class="row justify-content-center">
+        <div class="header row col-md-11 col-lg-9 col-xl-8 align-items-center">
+            <img class="logo col-md-3 d-none d-md-block img-responsive"
+                 src="{{ url_for('static', filename='img/Map-icon.svg') }}"
+                 class="logo"
+                 alt="logo" title="Logo"/>
+            <h1 class="col">Bienvenue chez GrandPy - Le bot
+                qui vous raconte sa vie</h1>
         </div>
-    </div>
-    <div class="message-box">
+    </header>
+    <section class="chat row">
+        <div class="chat-title">
+            <h1>GrandPy</h1>
+            <h2>Directionalist</h2>
+            <figure class="avatar">
+                <img src="{{ url_for('static', filename='img/26943211820_e98f297402_q.jpg') }}"
+                     alt="Cool Papy"/>
+            </figure>
+        </div>
+        <div class="messages" id="messages">
+            <div class="message">Bonjour, mon petit! Que veux-tu
+                savoir aujourd'hui?
+            </div>
+        </div>
+        <div class="message-box">
         <textarea placeholder="Pose une question a GrandPy..."
                   class="message-input" id="input"></textarea>
-        <button type="button" class="message-submit"
-                id="submit">Envoyer
-        </button>
-    </div>
-</section>
-<footer>
-    <p>Copyright Sebastien Lesouef</p>
-    <p>avatar from
-        <a href="https://www.flickr.com/photos/garryknight/26943211820">Garry Knight</a>
-    </p>
-</footer>
+            <button type="button" class="message-submit"
+                    id="submit">Envoyer
+            </button>
+        </div>
+    </section>
+    <footer class="fixed-bottom">
+        <p>Copyright Sebastien Lesouef</p>
+        <p>avatar from
+            <a href="https://www.flickr.com/photos/garryknight/26943211820">Garry
+                Knight</a>
+        </p>
+    </footer>
+</div>
 
 <script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
