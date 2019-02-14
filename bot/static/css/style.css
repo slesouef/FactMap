@@ -9,40 +9,35 @@
     font-style: normal;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 html, body {
     height: 100%;
 }
 
 body {
-    font-size: 100%;
     background-image: linear-gradient(135deg, #79cd40, #0aa4ff);
     background-size: cover;
-    line-height: 1.3;
     overflow: hidden;
     margin: 0;
 }
 
 header {
-    background-color: rgba(250, 231, 242, 0.2);
-    border-radius: 15px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1.5rem 0;
 }
 
-header > h1 {
+.header {
+    background-color: rgba(250, 231, 242, 0.2);
+    border-radius: 15px;
+}
+
+.header > h1 {
     font-family: 'calligraffitiregular', cursive;
-    padding: 1.3em;
+    padding: 1rem 0;
     text-align: center;
+    font-size: 2rem;
 }
 
 .logo {
-    float: left;
-    padding-left: 1em;
+    max-height: 128px;
 }
 
 .chat {
@@ -72,14 +67,14 @@ header > h1 {
 
 .chat-title > h1, h2 {
     font-weight: normal;
-    font-size: 1em;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
 }
 
 .chat-title > h2 {
     color: rgba(255, 255, 255, .5);
-    font-size: .8em;
+    font-size: .8rem;
     letter-spacing: 1px;
 }
 
@@ -189,16 +184,12 @@ textarea::-webkit-scrollbar {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     background-color: black;
     text-align: center;
     min-height: 3em;
-    width: 100%;
 }
 
 footer p {
     color: rgba(255, 255, 255, 0.75);
     font-size: 60%;
-    line-height: 50%;
 }
