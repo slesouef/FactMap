@@ -176,7 +176,11 @@ footer {
     min-height: 3rem;
 }
 
-footer p {
+footer > div {
     color: rgba(255, 255, 255, 0.75);
     font-size: 60%;
+}
+
+.social {
+    padding: .2rem;
 }
