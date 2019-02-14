@@ -69,3 +69,5 @@ interactions.
  displaying maps (02/07/2019)
  
  1.0 : Feature complete release. (02/12/2019)
+ 
+ 1.0 : Responsive UI added. (02/14/2019)
