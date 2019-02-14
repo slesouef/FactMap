@@ -14,6 +14,16 @@
           integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA"
           crossorigin="anonymous">
 
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.2/css/brands.css"
+          integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css"
+          integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+"
+          crossorigin="anonymous">
+
     <link rel="apple-touch-icon" sizes="180x180"
           href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32"
@@ -37,7 +47,6 @@
         <div class="header row col-md-11 col-lg-9 col-xl-8 align-items-center">
             <img class="logo col-md-3 d-none d-md-block img-responsive"
                  src="{{ url_for('static', filename='img/Map-icon.svg') }}"
-                 class="logo"
                  alt="logo" title="Logo"/>
             <h1 class="col">Bienvenue chez GrandPy - Le bot
                 qui vous raconte sa vie</h1>
@@ -79,12 +88,26 @@
             </form>
         </div>
     </section>
-    <footer class="fixed-bottom">
-        <p>Copyright Sebastien Lesouef</p>
-        <p>avatar from
+    <footer class="row fixed-bottom no-gutters">
+        <div class="col">Copyright Sebastien Lesouef</div>
+        <div class="w-100"></div>
+        <div class="row col">
+            <div
+                    class="row col col-sm-4 col-md-3 offset-3 offset-sm-4 offset-md-5">
+                <div class="social"><span class="fab fa-github"></span><a
+                        href="https://github.com/slesouef"> slesouef</a>
+                </div>
+                <div class="social"><span class="fab fa-linkedin"></span><a
+                        href="https://www.linkedin.com/in/s%C3%A9bastien-lesouef-68075524">
+                    sébastien-lesouef</a>
+                </div>
+            </div>
+        </div>
+        <div class="w-100"></div>
+        <div class="col">avatar from
             <a href="https://www.flickr.com/photos/garryknight/26943211820">Garry
                 Knight</a>
-        </p>
+        </div>
     </footer>
 </div>
 
