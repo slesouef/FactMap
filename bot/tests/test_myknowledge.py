@@ -37,7 +37,7 @@ EXTRACT_EMPTY = {
     "query": {
         "pages": [
             {
-            "missing": ""
+                "missing": ""
             }
         ]
     }
