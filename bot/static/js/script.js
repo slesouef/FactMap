@@ -29,7 +29,7 @@ function newPersonalMessage(text) {
     newEntry.textContent = text;
     newEntry.className = "message message-personal";
     document.getElementById("messages").appendChild(newEntry);
-    newEntry.scrollIntoView(false);
+    newEntry.scrollIntoView(true);
 }
 
 function tempLoader() {
@@ -38,7 +38,7 @@ function tempLoader() {
     tempDiv.id = "spinner";
     tempDiv.innerHTML = "<div class=spinner></div>";
     document.getElementById("messages").appendChild(tempDiv);
-    tempDiv.scrollIntoView(false);
+    tempDiv.scrollIntoView(true);
 }
 
 function checkResponse(body) {
@@ -57,7 +57,7 @@ function noQuestionMessage() {
         " répéter s'il te plaît?";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
-    newMessage.scrollIntoView(false);
+    newMessage.scrollIntoView(true);
 }
 
 function createNewReply(body) {
@@ -89,7 +89,7 @@ function createNewReply(body) {
     document.getElementById("messages").appendChild(newReply);
     initMap(response.map.coordinates[0], response.map.coordinates[1]);
     incrementCounter();
-    newReply.scrollIntoView(false);
+    newReply.scrollIntoView(true);
 }
 
 function createAddress(text) {
@@ -105,7 +105,7 @@ function noLocationMessage() {
         "précoce. Je ne me souvient plus où ca se trouve.";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
-    newMessage.scrollIntoView(false);
+    newMessage.scrollIntoView(true);
 }
 
 counter = 0;
@@ -128,7 +128,7 @@ function createKnowledge(response) {
     moreInfo.textContent = "[Plus d'information sur Wikipedia]";
     var newEntry = document.createElement("div");
     newEntry.textContent = "Est-ce que je t'ai deja parle de cet edroit dans" +
-        " lequel je trainais pas mal dans ma jeunesse? \r\n" + text + " ";
+        " lequel je trainais pas mal dans ma jeunesse? " + text + " ";
     newEntry.appendChild(moreInfo);
     return newEntry;
 }
