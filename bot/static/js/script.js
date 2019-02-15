@@ -60,11 +60,6 @@ function noQuestionMessage() {
     newMessage.scrollIntoView(false);
 }
 
-counter = 0;
-function incrementCounter() {
-    counter += 1;
-}
-
 function createNewReply(body) {
     var response = JSON.parse(body);
     var newReply = document.createElement("div");
@@ -82,7 +77,7 @@ function createNewReply(body) {
         newReply.appendChild(breakline);
         newReply.appendChild(noExtract);
     } else {
-        var extract = createKnowledge(response.wiki.extract);
+        var extract = createKnowledge(response.wiki);
         newReply.className = "message";
         newReply.appendChild(address);
         newReply.appendChild(breakline);
@@ -113,6 +108,11 @@ function noLocationMessage() {
     newMessage.scrollIntoView(false);
 }
 
+counter = 0;
+function incrementCounter() {
+    counter += 1;
+}
+
 function createMap() {
     var newMap = document.createElement("div");
     newMap.id = "map" + counter;
@@ -120,10 +120,16 @@ function createMap() {
     return newMap;
 }
 
-function createKnowledge(text) {
+function createKnowledge(response) {
+    var text = response.extract;
+    var url = response.URL;
+    var moreInfo = document.createElement("a");
+    moreInfo.href = url;
+    moreInfo.textContent = "[Plus d'information sur Wikipedia]";
     var newEntry = document.createElement("div");
-    newEntry.textContent = "J'y ai pas mal traine plus jeune. Je peut donc" +
-        " te dire ceci: \n" + text;
+    newEntry.textContent = "Est-ce que je t'ai deja parle de cet edroit dans" +
+        " lequel je trainais pas mal dans ma jeunesse? \r\n" + text + " ";
+    newEntry.appendChild(moreInfo);
     return newEntry;
 }
 
