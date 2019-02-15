@@ -3,7 +3,7 @@ import json
 
 from urllib import request, parse, error as e
 
-from constants import SEARCH_URL, EXTRACT_URL
+from constants import SEARCH_URL, EXTRACT_URL, WIKI_URL
 
 
 class Extract:
@@ -94,6 +94,9 @@ class Extract:
             if isinstance(result, dict):
                 text["status"] = "OK"
                 text["extract"] = result[str(target)]["extract"]
+                title = result[str(target)]["title"]
+                page_title = title.replace(" ", "_")
+                text["URL"] = WIKI_URL + page_title
             else:
                 text["status"] = "INVALID REQUEST CONTENT"
         else:

@@ -6,7 +6,7 @@ from io import BytesIO
 
 import bot.myknowledge as script
 
-from constants import URL
+from constants import URL_404
 
 # Mock response contains the necessary fields for both search and extract calls.
 # The artificial concatenation was necessary to allow for mocking the responses
@@ -19,6 +19,7 @@ MOCK_RESPONSE = {
         ],
         "pages": {
             "5653202": {
+                "title":"Cité Paradis",
                 "extract": "La cité Paradis est une voie publique située dans "
                            "le 10e arrondissement de Paris."
             }
@@ -104,8 +105,8 @@ class TestExtract:
     # test Media wiki API server error : http code 400+
     def test_api_call_error(self):
         """Server error HTTP response code handling test """
-        response = self.extract._api_call(URL)
-        assert response == "INVALID REQUEST. ERROR CODE: 400"
+        response = self.extract._api_call(URL_404)
+        assert response == "INVALID REQUEST. ERROR CODE: 404"
 
     def test_extract_pageid(self):
         """Test method for extracting pageid from API response"""
@@ -120,14 +121,16 @@ class TestExtract:
 
     def test_extract_pageid_server_error(self):
         """Test server error handling in response parsing"""
-        pageid = self.extract._extract_pageid("INVALID REQUEST. ERROR CODE: 400")
-        assert pageid["status"] == "INVALID REQUEST. ERROR CODE: 400"
+        pageid = self.extract._extract_pageid("INVALID REQUEST. ERROR CODE: "
+                                              "404")
+        assert pageid["status"] == "INVALID REQUEST. ERROR CODE: 404"
 
     def test_extract_text(self):
         """Test method for extracting extract text from API response"""
         text = self.extract._extract_text(self.test_pageid, MOCK_RESPONSE)
         assert text["extract"] == "La cité Paradis est une voie publique " \
                                   "située dans le 10e arrondissement de Paris."
+        assert text["URL"] == "https://fr.wikipedia.org/wiki/Cité_Paradis"
 
     # empty response ==> http 200 status
     def test_extract_text_empty(self):
