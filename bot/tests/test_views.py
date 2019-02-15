@@ -22,9 +22,14 @@ class TestView:
         assert response.status_code == 200
         assert b"<!DOCTYPE html>" in response.data
 
-    def test_route_facvicon(self):
+    def test_route_favicon(self):
         """Test favicon.ico route"""
         response = self.client.get("/favicon.ico")
+        assert response.status_code == 200
+
+    def test_route_browserconfig(self):
+        """Test browserconfig route"""
+        response = self.client.get("/browserconfig.xml")
         assert response.status_code == 200
 
     def test_route_data_parser_error(self):
