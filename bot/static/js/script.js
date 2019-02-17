@@ -10,10 +10,10 @@ document.getElementById("submit").addEventListener("click", function () {
     }
 });
 
-document.getElementById("input").addEventListener("keydown", function (e) {
+document.getElementById("input").addEventListener("keyup", function (e) {
     if (e.key === 'Enter') {
         var entry = document.getElementById("input").value;
-        if (entry === '') {
+        if (entry === '\n') {
             return false;
         } else {
             document.getElementById("input").value = "";
