@@ -17,7 +17,6 @@ body {
     background-image: linear-gradient(135deg, #79cd40, #0aa4ff);
     background-size: cover;
     background-repeat: no-repeat;
-    overflow: auto;
     margin: 0;
 }
 
