@@ -70,4 +70,6 @@ interactions.
  
  1.0 : Feature complete release. (02/12/2019)
  
- 1.0 : Responsive UI added. (02/14/2019)
+ 1.1 : Responsive UI added. (02/14/2019)
+ 
+ 1.2 : Various minor bug fixes. (02/18/2019)
