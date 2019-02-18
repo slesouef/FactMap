@@ -53,8 +53,7 @@ function checkResponse(body) {
 function noQuestionMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "Désolé, je n'ai pas compris ta question. Peux-tu" +
-        " répéter s'il te plaît?";
+    newMessage.textContent = "Désolé, je n'ai pas compris ta question. Peux-tu répéter s'il te plaît?";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(true);
@@ -94,15 +93,14 @@ function createNewReply(body) {
 
 function createAddress(text) {
     var newEntry = document.createElement("div");
-    newEntry.textContent = "Cela se trouve a l'address suivante: " + text;
+    newEntry.textContent = "Cela se trouve à l’adresse suivante: " + text;
     return newEntry;
 }
 
 function noLocationMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "Désolé, je doit avoir une poussée d'alzheimer " +
-        "précoce. Je ne me souvient plus où ca se trouve.";
+    newMessage.textContent = "Désolé, je doit avoir une poussée d’Alzheimer précoce. Je ne me souvient plus où ça se trouve.";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(true);
@@ -127,8 +125,7 @@ function createKnowledge(response) {
     moreInfo.href = url;
     moreInfo.textContent = "[Plus d'information sur Wikipedia]";
     var newEntry = document.createElement("div");
-    newEntry.textContent = "Est-ce que je t'ai deja parle de cet edroit dans" +
-        " lequel je trainais pas mal dans ma jeunesse? " + text + " ";
+    newEntry.textContent = "Est-ce que je t'ai déjà parlé de cet endroit où j’ai pas mal traîné mes guêtres?" + text + " ";
     newEntry.appendChild(moreInfo);
     return newEntry;
 }
