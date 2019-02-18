@@ -53,7 +53,8 @@ function checkResponse(body) {
 function noQuestionMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "Désolé, je n'ai pas compris ta question. Peux-tu répéter s'il te plaît?";
+    newMessage.textContent = "Désolé, je n'ai pas compris ta question." +
+        " Peux-tu répéter s'il te plaît?";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(true);
@@ -100,7 +101,8 @@ function createAddress(text) {
 function noLocationMessage() {
     var newMessage = document.createElement("div");
     newMessage.className = "message";
-    newMessage.textContent = "Désolé, je doit avoir une poussée d’Alzheimer précoce. Je ne me souvient plus où ça se trouve.";
+    newMessage.textContent = "Désolé, je doit avoir une poussée d’Alzheimer" +
+        " précoce. Je ne me souvient plus où ça se trouve.";
     document.getElementById("spinner").outerHTML = "";
     document.getElementById("messages").appendChild(newMessage);
     newMessage.scrollIntoView(true);
@@ -121,12 +123,10 @@ function createMap() {
 function createKnowledge(response) {
     var text = response.extract;
     var url = response.URL;
-    var moreInfo = document.createElement("a");
-    moreInfo.href = url;
-    moreInfo.textContent = "[Plus d'information sur Wikipedia]";
     var newEntry = document.createElement("div");
-    newEntry.textContent = "Est-ce que je t'ai déjà parlé de cet endroit où j’ai pas mal traîné mes guêtres?" + text + " ";
-    newEntry.appendChild(moreInfo);
+    newEntry.innerHTML = "Est-ce que je t'ai déjà parlé de cet endroit où" +
+        " j’ai pas mal traîné mes guêtres? " + text +
+        " [ <a href='" + url + "'>Plus d'information sur Wikipedia</a> ]";
     return newEntry;
 }
 
