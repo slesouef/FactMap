@@ -3,6 +3,7 @@
 Create a bot like application that provides interesting information about a 
 location.
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 ### Fonctionalities:
 
